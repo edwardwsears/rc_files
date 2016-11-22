@@ -49,7 +49,14 @@
  set foldmethod=syntax
  set foldcolumn=1
  set foldnestmax=1
+  
+ " highlight letter in 80th & 120th as width warning
+ match colorcolumn "\%80v.\|\%120v."
  
+ " display tabs and lines ending in spaces
+ set list
+ set listchars=tab:>-,trail:-,extends:>
+
  set nocompatible              " be iMproved, required
  filetype off                  " required
  
