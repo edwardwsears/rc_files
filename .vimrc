@@ -42,10 +42,12 @@
  " Provides tab-completion for all file-related tasks
  set path+=**
  
- " Display all matching files when we tab complete
- set wildmenu
- 
- " set folding on
+" Display all matching files when we tab complete
+" first just display list, then try to autocomplete
+set wildmenu
+set wildmode=list,full
+
+" set folding on
  set foldmethod=syntax
  set foldcolumn=1
  set foldnestmax=1
