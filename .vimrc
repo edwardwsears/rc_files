@@ -26,6 +26,13 @@
  nnoremap <C-h> gT
  nnoremap <C-l> gt
  
+"shortcuts for buffer size
+nnoremap - <C-w>-
+nnoremap = <C-w>+
+nnoremap + <C-w>>
+nnoremap _ <C-w><
+
+ 
  "set ctags file
  set tags=./tags
  "remove ctags & included files from tag completion (takes too long)
