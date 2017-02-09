@@ -59,8 +59,13 @@ set wildmode=list,full
  set foldcolumn=1
  set foldnestmax=1
   
- " highlight letter in 80th & 120th as width warning
- match colorcolumn "\%80v.\|\%120v."
+" highlight letter in 80th & 120th as width warning
+if exists('+colorcolumn')
+    match colorcolumn "\%80v.\|\%120v."
+else
+    highlight colorcolumn ctermbg=red
+    match colorcolumn "\%80v.\|\%120v."
+endif
  
  " display tabs and lines ending in spaces
  set list
