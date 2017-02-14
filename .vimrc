@@ -88,7 +88,7 @@ endif
  " Keep Plugin commands between vundle#begin/end.
  " plugin on GitHub repo
  "Plugin 'Shougo/neocomplcache.vim'
- Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
  " plugin from http://vim-scripts.org/vim/scripts.html
  "Plugin 'L9'
  " Git plugin not hosted on GitHub
