@@ -74,6 +74,11 @@ endif
  set nocompatible              " be iMproved, required
  filetype off                  " required
  
+" Set yank to push to system clipboard, needs vim 7.2+
+"  try =unnamedplus if having issues in linux
+set clipboard=unnamed
+
+ 
  " VUNDLE SETUP:
  " set the runtime path to include Vundle and initialize
  set rtp+=~/.vim/bundle/Vundle.vim
