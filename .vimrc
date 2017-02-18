@@ -54,6 +54,10 @@ nnoremap _ <C-w><
 set wildmenu
 set wildmode=list,full
 
+" set backspace to normal behavior
+set backspace=indent,eol,start
+
+
 " set folding on
  set foldmethod=syntax
  set foldcolumn=1
