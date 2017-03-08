@@ -65,11 +65,15 @@ set foldnestmax=1
 
 " highlight letter in 80th & 120th as width warning
 if exists('+colorcolumn')
-    match colorcolumn "\%80v.\|\%120v."
+    highlight colorcolumn ctermbg=235
+    let &colorcolumn="80,120"
 else
-    highlight colorcolumn ctermbg=red
-    match colorcolumn "\%80v.\|\%120v."
+    highlight colorcolumn ctermbg=235
+    let &colorcolumn="80,120"endif
 endif
+
+"Create diff search command (highlight diff markers)                                                                    
+command Diffsearch execute "/>>>>\\|<<<<\\|===="                                                                        
 
 " display tabs and lines ending in spaces
 set list
