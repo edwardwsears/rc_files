@@ -78,6 +78,9 @@ command! Diffsearch execute "/>>>>\\|<<<<\\|===="
 "Run shell command and display in new tab
 command! -nargs=+ Tabcommand execute "tabe | r! echo \"*******************************************************************************\";echo Command: "<q-args>';echo "*******************************************************************************"\\n;'<q-args>
 
+"Format P4 file paths so can use 'gf'
+command! P4filepathformat execute '%s/chips_a\//chips_a\/ /g|%s/#/ #/g|noh'
+
 " display tabs and lines ending in spaces
 set list
 set listchars=tab:>-,trail:-,extends:>
