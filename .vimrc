@@ -72,8 +72,9 @@ else
     let &colorcolumn="80,120"endif
 endif
 
-"Create diff search command (highlight diff markers)                                                                    
-command Diffsearch execute "/>>>>\\|<<<<\\|===="                                                                        
+"Create diff search command (highlight diff markers)
+command! Diffsearch execute "/>>>>\\|<<<<\\|===="
+command! -nargs=* Tabcommand execute "tabe | r! echo Command: "<q-args>'\\n;'<q-args>                                                                     
 
 " display tabs and lines ending in spaces
 set list
