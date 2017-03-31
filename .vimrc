@@ -76,7 +76,7 @@ endif
 command! Diffsearch execute "/>>>>\\|<<<<\\|===="
 
 "Run shell command and display in new tab
-command! -nargs=+ Tabcommand execute "tabe | r! echo \"*******************************************************************************\";echo Command: "<q-args>';echo "*******************************************************************************"\\n;'<q-args>
+command! -nargs=+ Tabcommand execute "tabe | r! echo \"*******************************************************************************\";echo Command: "<q-args>';echo "*******************************************************************************"\\n;'<q-args> | 1
 
 "Format P4 file paths so can use 'gf'
 command! P4filepathformat execute '%s/chips_a\//chips_a\/ /g|%s/#/ #/g|noh'
