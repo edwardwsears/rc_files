@@ -74,7 +74,9 @@ endif
 
 "Create diff search command (highlight diff markers)
 command! Diffsearch execute "/>>>>\\|<<<<\\|===="
-command! -nargs=* Tabcommand execute "tabe | r! echo Command: "<q-args>'\\n;'<q-args>                                                                     
+
+"Run shell command and display in new tab
+command! -nargs=+ Tabcommand execute "tabe | r! echo \"*******************************************************************************\";echo Command: "<q-args>';echo "*******************************************************************************"\\n;'<q-args>
 
 " display tabs and lines ending in spaces
 set list
