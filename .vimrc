@@ -11,6 +11,7 @@ set expandtab "shift spaces
 set shiftwidth=4
 set hlsearch
 set mouse=a
+set ttymouse=xterm2 "Needed for mouse resize pane to work properly
 set number
 set autoindent
 
