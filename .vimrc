@@ -86,7 +86,7 @@ set list
 set listchars=tab:>-,trail:-,extends:>
 
 set nocompatible              " be iMproved, required
-filetype off                  " required
+"filetype off                  " required for vundle (turn on after vundle setup though)
 
 " Set yank to push to system clipboard, needs vim 7.2+
 "  try =unnamedplus if having issues in linux
