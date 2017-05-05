@@ -5,6 +5,21 @@ set showcmd
 syntax enable
 syntax on
 
+" For most common commands, use leader of space
+let mapleader = "\<Space>"
+"write = w
+nnoremap <Leader>w :w<CR>
+"write/exit = x
+nnoremap <Leader>x :x<CR>
+"quit = q
+nnoremap <Leader>q :q!<CR>
+"tabedit = t
+nnoremap <Leader>t :tabe 
+"Tabcommand = c
+nnoremap <Leader>c :Tabcommand 
+"p4 edit file = e
+nnoremap <Leader>e :!p4 edit %<CR>
+
 set tabstop=4 "for tab
 set softtabstop=4 "for backspace
 set expandtab "shift spaces
@@ -66,9 +81,6 @@ set wildmode=list,full
 set foldmethod=syntax
 set foldcolumn=1
 set foldnestmax=1
-
-" Add close bracket
-inoremap { {<CR><BS>}<Esc>O
 
 " Needs TERM="xterm-256color"
 " highlight letter in 80th & 120th as width warning
