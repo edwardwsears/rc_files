@@ -7,6 +7,10 @@ syntax on
 
 " For most common commands, use leader of space
 let mapleader = "\<Space>"
+"beginning of line = h
+nnoremap <Leader>h ^
+"end of line = l
+nnoremap <Leader>l $
 "write = w
 nnoremap <Leader>w :w<CR>
 "write/exit = x
