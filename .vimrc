@@ -23,6 +23,8 @@ nnoremap <Leader>t :tabe
 nnoremap <Leader>c :Tabcommand 
 "p4 edit file = e
 nnoremap <Leader>e :!p4 edit %<CR>
+"p4 diff file = d
+nnoremap <Leader>d :!p4 diff %<CR>
 
 set tabstop=4 "for tab
 set softtabstop=4 "for backspace
@@ -67,7 +69,7 @@ nnoremap _ <C-w><
 "t = tags
 "i = included files
 "set cpt-=t
-"set cpt-=i
+set cpt-=i
 
 " Setup CSCOPE
 cs add cscope.out
@@ -108,7 +110,7 @@ command! Diffsearch execute "/>>>>\\|<<<<\\|===="
 command! -nargs=+ Tabcommand execute "tabe | r! echo \"*******************************************************************************\";echo Command: "<q-args>';echo "*******************************************************************************"\\n;'<q-args> | 1
 
 "Format p4 file paths so can use 'gf'
-command! P4filepathformat execute '%s/chips_a\//chips_a\/ /g|%s/#/ #/g|noh'
+command! P4filepathformat execute '%s/\/drivers/\/ drivers/g|%s/#/ #/g|1|/drivers/|noh'
 
 " display tabs and lines ending in spaces
 set list
