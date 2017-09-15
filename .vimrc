@@ -7,10 +7,6 @@ syntax on
 
 " For most common commands, use leader of space
 let mapleader = "\<Space>"
-"beginning of line = h
-nnoremap <Leader>h ^
-"end of line = l
-nnoremap <Leader>l $
 "write = w
 nnoremap <Leader>w :w<CR>
 "write/exit = x
@@ -25,6 +21,28 @@ nnoremap <Leader>c :Tabcommand
 nnoremap <Leader>e :!p4 edit %<CR>
 "p4 diff file = d
 nnoremap <Leader>d :!p4 diff %<CR>
+"open taglist
+nnoremap <Leader>l :TlistToggle <CR>
+"search tag - use / if regex
+nnoremap <Leader>s :stj 
+
+" only show current file's taglist
+let Tlist_Show_One_File = 1
+let Tlist_Close_On_Select = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Inc_Winwidth = 1
+let Tlist_WinWidth = 50 "Vertically split taglist window width.
+"let Tlist_Use_Right_Window = 0
+"let Tlist_Use_Horiz_Window = 0
+"let Tlist_WinHeight = 20 "Horizontally split taglist window height.
+
+
+
+
+" Nav reference
+" gd = go to definition of local var (D for global)
+" C-w T = move split to new tab
 
 set tabstop=4 "for tab
 set softtabstop=4 "for backspace
@@ -58,9 +76,9 @@ nnoremap + <C-w>>
 nnoremap _ <C-w><
 
 " To Run Ctags:
-" %> find drivers/resman/kernel/ | grep -P ".*h|.*c" | xargs ctags
+" %> find drivers/resman/kernel/ | grep -P ".*h|.*c" | xargs ctags --sort=1
 "set ctags file
-"set tags=~/ctags/chipsa.tags
+set tags=./tags,tags
 "remove ctags & included files from tag completion (takes too long)
 ". = the current buffer
 "w = buffers in other windows
@@ -68,11 +86,12 @@ nnoremap _ <C-w><
 "u = unloaded buffers
 "t = tags
 "i = included files
-"set cpt-=t
+set cpt-=t
 set cpt-=i
 
 " Setup CSCOPE
-cs add cscope.out
+"cs add cscope.out
+"set completeopt=menuone
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
@@ -83,8 +102,8 @@ set path+=**
 set wildmenu
 set wildmode=list,full
 
-" set folding on
-set foldmethod=syntax
+" set folding manual (set =syntax for auto)
+set foldmethod=manual
 set foldcolumn=1
 set foldnestmax=1
 
@@ -124,17 +143,18 @@ set backspace=indent,eol,start
 set clipboard=unnamed
 
 " set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 "Plugin 'VundleVim/Vundle.vim'
 "Plugin 'ervandew/supertab'
+Plugin 'vim-scripts/taglist.vim'
 " All of your Plugins must be added before the following line
-"call vundle#end()            " required
-"filetype plugin indent on    " required
+call vundle#end()            " required
+filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
