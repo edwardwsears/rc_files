@@ -131,7 +131,7 @@ command! Diffsearch execute "/>>>>\\|<<<<\\|===="
 command! -nargs=+ Tabcommand execute "tabe | r! echo \"*******************************************************************************\";echo Command: "<q-args>';echo "*******************************************************************************"\\n;'<q-args> | 1
 
 "Format p4 file paths so can use 'gf'
-command! P4filepathformat execute '%s/\/drivers/\/ drivers/g|%s/#/ #/g|1|/drivers/|noh'
+command! P4filepathformat execute '%s/\/\(chips_a\/\|r\d\d\d_\d\d\/\)/\/\1 /g|%s/#/ #/g|1|/drivers/|noh'
 
 " display tabs and lines ending in spaces
 set list
