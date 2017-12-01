@@ -151,9 +151,9 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-"Plugin 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 "Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/taglist.vim'
+Plugin 'stmuk/taglist.vim'
 Plugin 'vimwiki/vimwiki'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
