@@ -39,9 +39,6 @@ let Tlist_WinWidth = 50 "Vertically split taglist window width.
 "let Tlist_Use_Horiz_Window = 0
 "let Tlist_WinHeight = 20 "Horizontally split taglist window height.
 
-
-
-
 " Nav reference
 " gd = go to definition of local var (D for global)
 " C-w T = move split to new tab
@@ -123,6 +120,9 @@ endif
 
 "Create diff search command (highlight diff markers)
 command! Diffsearch execute "/>>>>\\|<<<<\\|===="
+
+"CL desc template
+command! ClTemplate execute 'g/enter description here/d | -1 | r ~/.vim/templates/cldesc.template'
 
 "Run shell command and display in new tab
 command! -nargs=+ Tabcommand execute "tabe | r! echo \"*******************************************************************************\";echo Command: "<q-args>';echo "*******************************************************************************"\\n;'<q-args> | 1
