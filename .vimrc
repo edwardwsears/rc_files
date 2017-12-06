@@ -14,7 +14,7 @@ nnoremap <Leader>x :x<CR>
 "quit = q
 nnoremap <Leader>q :q!<CR>
 "reload = r
-nnoremap <Leader>r :r<CR>
+nnoremap <Leader>r :e<CR>
 "tabedit = t
 nnoremap <Leader>t :tabe 
 "Tabcommand = c
