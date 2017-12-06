@@ -58,14 +58,11 @@ set autoindent
 
 set tw=0
 
+" load bashrc defines
+set shellcmdflag=-ic
+
 "set color scheme
 colorscheme elflord
-
-"change parens to yellow and bold
-"hi MatchParen cterm=bold ctermbg=none ctermfg=blue
-
-"change to bash shell
-"set shell=/bin/bash
 
 "shortcuts for buffer nav
 nnoremap <C-h> gT
