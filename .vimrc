@@ -55,9 +55,6 @@ set autoindent
 
 set tw=0
 
-" load bashrc defines
-set shellcmdflag=-ic
-
 "set color scheme
 colorscheme elflord
 
