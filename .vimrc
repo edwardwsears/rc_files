@@ -28,6 +28,9 @@ nnoremap <Leader>l :TlistToggle <CR>
 "search tag - use / if regex
 nnoremap <Leader>s :stj 
 
+" map vimwiki <leader>ww to something else so it doesn't interfere with above
+nmap <Leader>i <Plug>VimwikiIndex
+
 " only show current file's taglist
 let Tlist_Show_One_File = 1
 let Tlist_Close_On_Select = 1
