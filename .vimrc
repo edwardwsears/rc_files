@@ -130,6 +130,9 @@ command! -nargs=+ Tabcommand execute "tabe | r! echo \"*************************
 "Format p4 file paths so can use 'gf'
 command! P4filepathformat execute '%s/\/\(chips_a\/\|r\d\d\d_\d\d\/\)/\/\1 /g|%s/#/ #/g|1|/drivers/|noh'
 
+"Remove special color characters when reading output from terminal                                                      
+command! RemoveSpecialCharacters execute '%s/^[[1b\[[0-9;]*m//g | 1'                                                    
+
 " display tabs and lines ending in spaces
 set list
 set listchars=tab:>-,trail:-,extends:>
