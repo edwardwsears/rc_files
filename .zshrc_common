@@ -3,6 +3,11 @@ SHELL=/bin/zsh
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
+# word delimination
+autoload -U select-word-style
+select-word-style bash
+
+
 #prompt
 
 #vim key binding settings
