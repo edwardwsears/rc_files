@@ -157,6 +157,7 @@ Plugin 'stmuk/taglist.vim'
 Plugin 'vimwiki/vimwiki'
 "Plugin 'powerman/vim-plugin-AnsiEsc'
 Plugin 'vim-scripts/drawit'
+Plugin 'svermeulen/vim-yoink'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -171,5 +172,13 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" vim-yoink options (requires vim 8.1+)
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+let g:yoinkIncludeDeleteOperations = 1
+let g:yoinkSyncNumberedRegisters = 1
 
 filetype on
