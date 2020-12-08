@@ -179,6 +179,6 @@ nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
 let g:yoinkIncludeDeleteOperations = 1
-let g:yoinkSyncNumberedRegisters = 1
+let g:yoinkSyncNumberedRegisters = 0
 
 filetype on
