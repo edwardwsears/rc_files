@@ -28,8 +28,16 @@ nnoremap <Leader>l :TlistToggle <CR>
 "search tag - use / if regex
 nnoremap <Leader>s :stj 
 
+"Insert date
+command! Date put =strftime('%A %Y/%m/%d')
+" Map to leader-a
+nnoremap <Leader>a :Date<CR>kJ$
+
 " map vimwiki <leader>ww to something else so it doesn't interfere with above
 nmap <Leader>i <Plug>VimwikiIndex
+
+" Define path to vimwiki notes area
+" let g:vimwiki_list = [{'path': '~/OneDrive - NVIDIA Corporation/Documents/notes/'}]
 
 " only show current file's taglist
 let Tlist_Show_One_File = 1
