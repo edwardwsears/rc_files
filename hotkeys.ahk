@@ -1,8 +1,10 @@
-﻿; win + alt + m = mute sound
-^!m::   SoundSetMute -1
+; Without this, the win+alt+k macro doesn't work
+#Requires AutoHotkey v2.0
 
+; ctrl + alt + m = mute sound
+^!m::   SoundSetMute -1
 ; win + alt + k already mutes/unmutes microphone
-;^!k::   #!k
+^!k::   #!k
 ; also win + alt + left click = mute mic
 ^!LButton::#!k
 
@@ -34,6 +36,6 @@ if WinExist("Spotify")
     Send "{Media_Next}"
 }
 
-; win + alt + up/down  = volume up/down
+; ctrl+alt+ up/down  = volume up/down
 ^!up::      send "{Volume_Up}"
 ^!down::    send "{Volume_Down}"
