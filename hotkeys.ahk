@@ -1,41 +1,67 @@
 ; Without this, the win+alt+k macro doesn't work
 #Requires AutoHotkey v2.0
 
-; ctrl + alt + m = mute sound
-^!m::   SoundSetMute -1
-; win + alt + k already mutes/unmutes microphone
-^!k::   #!k
-; also win + alt + left click = mute mic
-^!LButton::#!k
+; Cheatsheet
+; #     = Win
+; ^     = ctrl
+; !     = alt
+; +     = shift
+; Prepend < for left (ex "<#") and > for right (ex ">#")
+; For hotkeys, can't use colon ":"
 
-; play/pause spotify
-;   ctrl+alt+p
-;   ctrl+alt+right-click
-^!p::
-^!RButton::
-{
-if WinExist("Spotify")
-    WinActivate
-    Send "{Media_Play_Pause}"
-}
-^!LButton::#!k
+; *********** Kinesis Freestyle2 "fn" Layer: left-ctrl + left-alt *********************
+    <^<!m::   0
+    <^<!0::   0
+    <^<!j::   1
+    <^<!k::   2
+    <^<!l::   3
+    <^<!u::   4
+    <^<!i::   5
+    <^<!o::   6
+    <^<!7::   7
+    <^<!8::   8
+    <^<!9::   9
+    <^<!-::   *
+    <^<!p::   -
+    <^<!;::   +
+    <^<!.::   .
+    <^<!/::   /
+; **********************************************************
 
-; ctrl+alt+left = prev song spotify
-^!left::
-{
-if WinExist("Spotify")
-    WinActivate
-    Send "{Media_Prev}"
-}
+; *********** Media Layer: left-win + left-alt *********************
+; Sound Control / Mic Control
+    ; Mute Microphone: win + alt + k already mutes/unmutes microphone
 
-; ctrl+alt+right = next song spotify
-^!right::
-{
-if WinExist("Spotify")
-    WinActivate
-    Send "{Media_Next}"
-}
+    ; Mute Sound: left_win + alt + m
+    <#!m::   SoundSetMute -1
 
-; ctrl+alt+ up/down  = volume up/down
-^!up::      send "{Volume_Up}"
-^!down::    send "{Volume_Down}"
+    ; left_win+alt+ up/down  = volume up/down
+    <#!up::      send "{Volume_Up}"
+    <#!down::    send "{Volume_Down}"
+
+; Spotify Control
+    ; play/pause spotify: Left_win + alt + p
+    <#!p::
+    {
+    if WinExist("Spotify")
+        WinActivate
+        Send "{Media_Play_Pause}"
+    }
+
+    ; prev song spotify = left_win+alt+left
+    <#!left::
+    {
+    if WinExist("Spotify")
+        WinActivate
+        Send "{Media_Prev}"
+    }
+
+    ; next song spotify = left_win+alt+right
+    <#!right::
+    {
+    if WinExist("Spotify")
+        WinActivate
+        Send "{Media_Next}"
+    }
+
+; **********************************************************
