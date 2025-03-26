@@ -9,6 +9,11 @@
 ; Prepend < for left (ex "<#") and > for right (ex ">#")
 ; For hotkeys, can't use colon ":"
 
+    ; Remap "Shift + PauseBreak" to "Shift + Insert" for pasting into terminal
+    +Pause::    +Insert
+    ; Remap capslock to esc
+    Capslock::  Esc
+
 ; *********** Kinesis Freestyle2 "fn" Layer: left-ctrl + left-alt *********************
     <^<!m::   0
     <^<!0::   0
