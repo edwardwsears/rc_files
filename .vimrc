@@ -59,6 +59,13 @@ nmap <Leader>vmdn <Plug>VimwikiMakeDiaryNote
 nmap <Leader>vmtdn <Plug>VimwikiMakeTomorrowDiaryNote
 nmap <Leader>vmydn <Plug>VimwikiMakeYesterdayDiaryNote
 
+let g:vimwiki_list = [{
+            \ 'path': '~/notes/',
+            \ 'syntax': 'markdown',
+            \ 'ext': 'md'
+            \}]
+
+
 " only show current file's taglist
 let Tlist_Show_One_File = 1
 let Tlist_Close_On_Select = 1
