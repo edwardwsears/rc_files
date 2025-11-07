@@ -69,4 +69,14 @@
         Send "{Media_Next}"
     }
 
+; Paste Date
+    ; Past YYYY/MM/DD: Left_win + alt + d
+    <#!d::
+    {
+        ;TimeString := FormatTime(, "yyyy/MM/dd")
+        ;SendInput TimeString
+        SendInput A_YYYY "/" A_MM "/" A_DD
+    }
+
 ; **********************************************************
+
