@@ -75,8 +75,9 @@
     {
         ;TimeString := FormatTime(, "yyyy/MM/dd")
         ;SendInput TimeString
-        SendInput A_YYYY "/" A_MM "/" A_DD
+        SendInput A_YYYY "-" A_MM "-" A_DD
     }
 
 ; **********************************************************
+
 
