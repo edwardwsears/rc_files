@@ -1,0 +1,54 @@
+# macOS compatibility layer for .zshrc_common.
+# Keep shared settings in .zshrc_common and macOS-only adjustments here.
+
+typeset -i _rc_macos_had_term=${+TERM}
+typeset _rc_macos_original_term="${TERM-}"
+typeset -i _rc_macos_added_dircolors=0
+
+# .zshrc_common registers these widgets even though their implementations are
+# commented out. No-op implementations prevent an error before every prompt.
+if (( ! ${+functions[zle-line-init]} )); then
+    function zle-line-init() { :; }
+fi
+if (( ! ${+functions[zle-keymap-select]} )); then
+    function zle-keymap-select() { :; }
+fi
+
+# Homebrew installs GNU dircolors as gdircolors. If coreutils is not installed,
+# provide a quiet shim so the shared Linux configuration can still be sourced.
+if (( ! ${+functions[dircolors]} && ! ${+commands[dircolors]} )); then
+    _rc_macos_added_dircolors=1
+    if (( ${+commands[gdircolors]} )); then
+        function dircolors() { command gdircolors "$@"; }
+    else
+        function dircolors() { return 0; }
+    fi
+fi
+
+source ~/.zshrc_common
+
+if (( _rc_macos_added_dircolors )); then
+    unfunction dircolors
+fi
+
+# Preserve the terminal type supplied by the macOS terminal application.
+if (( _rc_macos_had_term )); then
+    export TERM="$_rc_macos_original_term"
+else
+    unset TERM
+fi
+
+# macOS command equivalents.
+export CLICOLOR=1
+alias ls='ls -G'
+alias xc='xargs echo -n | pbcopy'
+
+# Apply the shared GNU color definition to zsh completion after it is defined.
+if [[ -n "${LS_COLORS-}" ]]; then
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+fi
+
+# macOS ps calls the full command-line field "command", not "cmd".
+zstyle ':completion:*:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,command'
+
+unset _rc_macos_had_term _rc_macos_original_term _rc_macos_added_dircolors
