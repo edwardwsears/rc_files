@@ -9,7 +9,7 @@ original files remain unchanged.
    brew install tmux cscope universal-ctags
    ```
 
-2. Copy the shared and macOS rc files:
+2. Copy the shared and macOS rc files (including the AeroSpace config):
 
    ```sh
    ./copy_rc_files_mac.sh
@@ -34,3 +34,5 @@ original files remain unchanged.
    ```
 
 `hotkeys.ahk` is Windows-specific and is not loaded on macOS.
+`.aerospace.toml` is macOS-specific and is only managed by
+`copy_rc_files_mac.sh`.
