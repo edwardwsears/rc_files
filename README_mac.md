@@ -1,7 +1,7 @@
 # macOS setup
 
-The macOS files wrap and reuse the existing shared/Linux configuration. The
-original files remain unchanged.
+The shared copy script detects macOS and includes the macOS-specific files
+automatically.
 
 1. Install the commands referenced by the shared configuration:
 
@@ -12,7 +12,7 @@ original files remain unchanged.
 2. Copy the shared and macOS rc files (including the AeroSpace config):
 
    ```sh
-   ./copy_rc_files_mac.sh
+   ./copy_rc_files.sh
    ```
 
 3. Initialize zsh:
@@ -35,4 +35,4 @@ original files remain unchanged.
 
 `hotkeys.ahk` is Windows-specific and is not loaded on macOS.
 `.aerospace.toml` is macOS-specific and is only managed by
-`copy_rc_files_mac.sh`.
+`copy_rc_files.sh` when running on macOS.

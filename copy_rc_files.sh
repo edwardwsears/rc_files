@@ -1,16 +1,29 @@
 #!/bin/bash
-if [[ "$1" == "-r" ]]; then
-    # copy rc files back to this directory
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+files=(
+    .sqliterc
+    .tmux.conf
+    .vimrc
+    .zshrc_common
+)
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    files+=(
+        .zshrc_common_mac
+        .aerospace.toml
+    )
+fi
+
+if [[ "${1:-}" == "-r" ]]; then
     echo "Copying rc files back to this directory"
-    cp ~/.sqliterc .
-    cp ~/.tmux.conf .
-    cp ~/.vimrc .
-    cp ~/.zshrc_common .
+    for file in "${files[@]}"; do
+        cp "$HOME/$file" "$script_dir/$file"
+    done
 else
-    # Copy rc files to home directory (~/)
     echo "Copying rc files to home directory"
-    cp .sqliterc ~/
-    cp .tmux.conf ~/
-    cp .vimrc ~/
-    cp .zshrc_common ~/
+    for file in "${files[@]}"; do
+        cp "$script_dir/$file" "$HOME/$file"
+    done
 fi
