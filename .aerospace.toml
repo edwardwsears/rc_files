@@ -9,11 +9,11 @@ config-version = 2
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget borders active_color=0xff00aaff inactive_color=0x00000000 width=5.0'
+    'exec-and-forget borders active_color=0xffff9500 inactive_color=0x00000000 width=5.0'
 ]
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Automatically reload the config when the config file is saved
 # After setting this to true, reload once manually to start the auto-reloading
@@ -26,7 +26,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 20
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -52,7 +52,7 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config option is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
+persistent-workspaces = [               "4", "5", "6", "7", "8", "9", "A", "B",
                          "C", "D", "E", "F", "G", "I", "M", "N", "O", "P", "Q",
                          "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
@@ -77,10 +77,26 @@ key-mapping.preset = 'qwerty'
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 gaps.inner.horizontal = 0
 gaps.inner.vertical =   0
-gaps.outer.left =       0
-gaps.outer.bottom =     0
-gaps.outer.top =        0
-gaps.outer.right =      0
+# Keep the 5pt JankyBorders stroke inside each monitor's visible frame.
+gaps.outer.left =       5
+gaps.outer.bottom =     5
+gaps.outer.top =        5
+gaps.outer.right =      5
+
+# Physical-first workspace layout. Monitor numbers are ordered left to right.
+# If a requested monitor is disconnected, AeroSpace uses the main monitor.
+[workspace-to-monitor-force-assignment]
+Q = [1, 'main']
+A = [1, 'main']
+Z = [1, 'main']
+
+W = [2, 'main']
+S = [2, 'main']
+X = [2, 'main']
+
+E = [3, 'main']
+D = [3, 'main']
+C = [3, 'main']
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -121,10 +137,10 @@ gaps.outer.right =      0
     alt-comma = 'layout accordion horizontal vertical'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    alt-h = ['focus --wrap-around left', 'move-mouse window-force-center']
-    alt-j = ['focus --wrap-around down', 'move-mouse window-force-center']
-    alt-k = ['focus --wrap-around up', 'move-mouse window-force-center']
-    alt-l = ['focus --wrap-around right', 'move-mouse window-force-center']
+    alt-h = ['focus --boundaries all-monitors-outer-frame left', 'move-mouse window-force-center']
+    alt-j = ['focus --boundaries all-monitors-outer-frame down', 'move-mouse window-force-center']
+    alt-k = ['focus --boundaries all-monitors-outer-frame up', 'move-mouse window-force-center']
+    alt-l = ['focus --boundaries all-monitors-outer-frame right', 'move-mouse window-force-center']
 
     alt-pageDown = ['focus --wrap-around dfs-next', 'move-mouse window-force-center']
     alt-pageUp = ['focus --wrap-around dfs-prev', 'move-mouse window-force-center']
@@ -139,10 +155,13 @@ gaps.outer.right =      0
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
 
+    # Focus physical monitors from left to right; fall back to main when absent.
+    # See: https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
+    alt-1 = 'focus-monitor 1 main'
+    alt-2 = 'focus-monitor 2 main'
+    alt-3 = 'focus-monitor 3 main'
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    alt-1 = ['workspace 1', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-2 = ['workspace 2', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-3 = ['workspace 3', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-4 = ['workspace 4', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-5 = ['workspace 5', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-6 = ['workspace 6', 'move-mouse window-force-center || move-mouse monitor-force-center']
@@ -173,9 +192,6 @@ gaps.outer.right =      0
     alt-z = ['workspace Z', 'move-mouse window-force-center || move-mouse monitor-force-center']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1', 'move-mouse window-force-center']
-    alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2', 'move-mouse window-force-center']
-    alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3', 'move-mouse window-force-center']
     alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4', 'move-mouse window-force-center']
     alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5', 'move-mouse window-force-center']
     alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6', 'move-mouse window-force-center']
@@ -224,7 +240,7 @@ gaps.outer.right =      0
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']
 
-    alt-shift-h = ['join-with left', 'mode main']
-    alt-shift-j = ['join-with down', 'mode main']
-    alt-shift-k = ['join-with up', 'mode main']
-    alt-shift-l = ['join-with right', 'mode main']
+    h = ['join-with left', 'mode main']
+    j = ['join-with down', 'mode main']
+    k = ['join-with up', 'mode main']
+    l = ['join-with right', 'mode main']
