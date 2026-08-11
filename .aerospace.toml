@@ -50,12 +50,13 @@ automatically-unhide-macos-hidden-apps = false
 
 # List of workspaces that should stay alive even when they contain no windows,
 # even when they are invisible.
+# Naming convention: row.column-hotkey (for example, 2.3-d).
 # This config option is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
 persistent-workspaces = [
-    '1-q', '2-w', '3-e',
-    '4-a', '5-s', '6-d',
-    '7-z', '8-x', '9-c',
+    '1.1-q', '1.2-w', '1.3-e',
+    '2.1-a', '2.2-s', '2.3-d',
+    '3.1-z', '3.2-x', '3.3-c',
 ]
 
 # A callback that runs every time binding mode changes
@@ -88,17 +89,17 @@ gaps.outer.right =      5
 # Physical-first workspace layout. Monitor numbers are ordered left to right.
 # If a requested monitor is disconnected, AeroSpace uses the main monitor.
 [workspace-to-monitor-force-assignment]
-'1-q' = [1, 'main']
-'4-a' = [1, 'main']
-'7-z' = [1, 'main']
+'1.1-q' = [1, 'main']
+'2.1-a' = [1, 'main']
+'3.1-z' = [1, 'main']
 
-'2-w' = [2, 'main']
-'5-s' = [2, 'main']
-'8-x' = [2, 'main']
+'1.2-w' = [2, 'main']
+'2.2-s' = [2, 'main']
+'3.2-x' = [2, 'main']
 
-'3-e' = [3, 'main']
-'6-d' = [3, 'main']
-'9-c' = [3, 'main']
+'1.3-e' = [3, 'main']
+'2.3-d' = [3, 'main']
+'3.3-c' = [3, 'main']
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -141,19 +142,19 @@ gaps.outer.right =      5
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     # Focus windows across monitors first, then move through the 3x3 workspace grid.
     alt-h = [
-        'focus --boundaries all-monitors-outer-frame --boundaries-action fail left || (test %{workspace} = 2-w && workspace 1-q) || (test %{workspace} = 3-e && workspace 2-w) || (test %{workspace} = 5-s && workspace 4-a) || (test %{workspace} = 6-d && workspace 5-s) || (test %{workspace} = 8-x && workspace 7-z) || (test %{workspace} = 9-c && workspace 8-x) || true',
+        'focus --boundaries all-monitors-outer-frame --boundaries-action fail left || (test %{workspace} = 1.2-w && workspace 1.1-q) || (test %{workspace} = 1.3-e && workspace 1.2-w) || (test %{workspace} = 2.2-s && workspace 2.1-a) || (test %{workspace} = 2.3-d && workspace 2.2-s) || (test %{workspace} = 3.2-x && workspace 3.1-z) || (test %{workspace} = 3.3-c && workspace 3.2-x) || true',
         'move-mouse window-force-center || move-mouse monitor-force-center',
     ]
     alt-j = [
-        'focus --boundaries all-monitors-outer-frame --boundaries-action fail down || (test %{workspace} = 1-q && workspace 4-a) || (test %{workspace} = 2-w && workspace 5-s) || (test %{workspace} = 3-e && workspace 6-d) || (test %{workspace} = 4-a && workspace 7-z) || (test %{workspace} = 5-s && workspace 8-x) || (test %{workspace} = 6-d && workspace 9-c) || true',
+        'focus --boundaries all-monitors-outer-frame --boundaries-action fail down || (test %{workspace} = 1.1-q && workspace 2.1-a) || (test %{workspace} = 1.2-w && workspace 2.2-s) || (test %{workspace} = 1.3-e && workspace 2.3-d) || (test %{workspace} = 2.1-a && workspace 3.1-z) || (test %{workspace} = 2.2-s && workspace 3.2-x) || (test %{workspace} = 2.3-d && workspace 3.3-c) || true',
         'move-mouse window-force-center || move-mouse monitor-force-center',
     ]
     alt-k = [
-        'focus --boundaries all-monitors-outer-frame --boundaries-action fail up || (test %{workspace} = 4-a && workspace 1-q) || (test %{workspace} = 5-s && workspace 2-w) || (test %{workspace} = 6-d && workspace 3-e) || (test %{workspace} = 7-z && workspace 4-a) || (test %{workspace} = 8-x && workspace 5-s) || (test %{workspace} = 9-c && workspace 6-d) || true',
+        'focus --boundaries all-monitors-outer-frame --boundaries-action fail up || (test %{workspace} = 2.1-a && workspace 1.1-q) || (test %{workspace} = 2.2-s && workspace 1.2-w) || (test %{workspace} = 2.3-d && workspace 1.3-e) || (test %{workspace} = 3.1-z && workspace 2.1-a) || (test %{workspace} = 3.2-x && workspace 2.2-s) || (test %{workspace} = 3.3-c && workspace 2.3-d) || true',
         'move-mouse window-force-center || move-mouse monitor-force-center',
     ]
     alt-l = [
-        'focus --boundaries all-monitors-outer-frame --boundaries-action fail right || (test %{workspace} = 1-q && workspace 2-w) || (test %{workspace} = 2-w && workspace 3-e) || (test %{workspace} = 4-a && workspace 5-s) || (test %{workspace} = 5-s && workspace 6-d) || (test %{workspace} = 7-z && workspace 8-x) || (test %{workspace} = 8-x && workspace 9-c) || true',
+        'focus --boundaries all-monitors-outer-frame --boundaries-action fail right || (test %{workspace} = 1.1-q && workspace 1.2-w) || (test %{workspace} = 1.2-w && workspace 1.3-e) || (test %{workspace} = 2.1-a && workspace 2.2-s) || (test %{workspace} = 2.2-s && workspace 2.3-d) || (test %{workspace} = 3.1-z && workspace 3.2-x) || (test %{workspace} = 3.2-x && workspace 3.3-c) || true',
         'move-mouse window-force-center || move-mouse monitor-force-center',
     ]
 
@@ -177,26 +178,26 @@ gaps.outer.right =      5
     alt-3 = 'focus-monitor 3 main'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    alt-q = ['workspace 1-q', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-w = ['workspace 2-w', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-e = ['workspace 3-e', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-a = ['workspace 4-a', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-s = ['workspace 5-s', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-d = ['workspace 6-d', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-z = ['workspace 7-z', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-x = ['workspace 8-x', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-c = ['workspace 9-c', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-q = ['workspace 1.1-q', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-w = ['workspace 1.2-w', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-e = ['workspace 1.3-e', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-a = ['workspace 2.1-a', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-s = ['workspace 2.2-s', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-d = ['workspace 2.3-d', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-z = ['workspace 3.1-z', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-x = ['workspace 3.2-x', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-c = ['workspace 3.3-c', 'move-mouse window-force-center || move-mouse monitor-force-center']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    alt-shift-q = ['move-node-to-workspace 1-q', 'workspace 1-q', 'move-mouse window-force-center']
-    alt-shift-w = ['move-node-to-workspace 2-w', 'workspace 2-w', 'move-mouse window-force-center']
-    alt-shift-e = ['move-node-to-workspace 3-e', 'workspace 3-e', 'move-mouse window-force-center']
-    alt-shift-a = ['move-node-to-workspace 4-a', 'workspace 4-a', 'move-mouse window-force-center']
-    alt-shift-s = ['move-node-to-workspace 5-s', 'workspace 5-s', 'move-mouse window-force-center']
-    alt-shift-d = ['move-node-to-workspace 6-d', 'workspace 6-d', 'move-mouse window-force-center']
-    alt-shift-z = ['move-node-to-workspace 7-z', 'workspace 7-z', 'move-mouse window-force-center']
-    alt-shift-x = ['move-node-to-workspace 8-x', 'workspace 8-x', 'move-mouse window-force-center']
-    alt-shift-c = ['move-node-to-workspace 9-c', 'workspace 9-c', 'move-mouse window-force-center']
+    alt-shift-q = ['move-node-to-workspace 1.1-q', 'workspace 1.1-q', 'move-mouse window-force-center']
+    alt-shift-w = ['move-node-to-workspace 1.2-w', 'workspace 1.2-w', 'move-mouse window-force-center']
+    alt-shift-e = ['move-node-to-workspace 1.3-e', 'workspace 1.3-e', 'move-mouse window-force-center']
+    alt-shift-a = ['move-node-to-workspace 2.1-a', 'workspace 2.1-a', 'move-mouse window-force-center']
+    alt-shift-s = ['move-node-to-workspace 2.2-s', 'workspace 2.2-s', 'move-mouse window-force-center']
+    alt-shift-d = ['move-node-to-workspace 2.3-d', 'workspace 2.3-d', 'move-mouse window-force-center']
+    alt-shift-z = ['move-node-to-workspace 3.1-z', 'workspace 3.1-z', 'move-mouse window-force-center']
+    alt-shift-x = ['move-node-to-workspace 3.2-x', 'workspace 3.2-x', 'move-mouse window-force-center']
+    alt-shift-c = ['move-node-to-workspace 3.3-c', 'workspace 3.3-c', 'move-mouse window-force-center']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = ['workspace-back-and-forth', 'move-mouse window-force-center || move-mouse monitor-force-center']
