@@ -9,7 +9,8 @@ automatically.
    brew install tmux cscope universal-ctags
    ```
 
-2. Copy the shared and macOS rc files (including the AeroSpace config):
+2. Copy the shared and macOS rc files (including the AeroSpace and
+   aerospace-swipe configs):
 
    ```sh
    ./copy_rc_files.sh
@@ -34,5 +35,6 @@ automatically.
    ```
 
 `hotkeys.ahk` is Windows-specific and is not loaded on macOS.
-`.aerospace.toml` is macOS-specific and is only managed by
-`copy_rc_files.sh` when running on macOS.
+`.aerospace.toml` and `.config/aerospace-swipe/config.json` are
+macOS-specific and are only managed by `copy_rc_files.sh` when running on
+macOS.

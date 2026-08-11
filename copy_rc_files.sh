@@ -13,17 +13,22 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
     files+=(
         .zshrc_common_mac
         .aerospace.toml
+        .config/aerospace-swipe/config.json
     )
 fi
 
 if [[ "${1:-}" == "-r" ]]; then
     echo "Copying rc files back to this directory"
     for file in "${files[@]}"; do
-        cp "$HOME/$file" "$script_dir/$file"
+        destination="$script_dir/$file"
+        mkdir -p "$(dirname "$destination")"
+        cp "$HOME/$file" "$destination"
     done
 else
     echo "Copying rc files to home directory"
     for file in "${files[@]}"; do
-        cp "$script_dir/$file" "$HOME/$file"
+        destination="$HOME/$file"
+        mkdir -p "$(dirname "$destination")"
+        cp "$script_dir/$file" "$destination"
     done
 fi
