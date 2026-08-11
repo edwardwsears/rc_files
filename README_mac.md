@@ -1,34 +1,24 @@
 # macOS setup
 
-The shared copy script detects macOS and includes the macOS-specific files
-automatically.
+The macOS installer requires [Homebrew](https://brew.sh). It installs the
+shared shell tools, AeroSpace, JankyBorders, and aerospace-swipe; copies the
+shared and macOS-specific rc files; and initializes zsh.
 
-1. Install the commands referenced by the shared configuration:
-
-   ```sh
-   brew install tmux cscope universal-ctags
-   ```
-
-2. Copy the shared and macOS rc files (including the AeroSpace and
-   aerospace-swipe configs):
+1. Run the installer:
 
    ```sh
-   ./copy_rc_files.sh
+   ./install_mac.sh
    ```
 
-3. Initialize zsh:
+2. Grant Accessibility access to AeroSpace and AerospaceSwipe if macOS asks.
 
-   ```sh
-   ./zsh_initial_setup_mac.sh
-   ```
-
-4. If this is the first Vim setup, use the existing shared script:
+3. If this is the first Vim setup, use the existing shared script:
 
    ```sh
    ./vim_initial_setup.sh
    ```
 
-5. Start a new shell:
+4. Start a new shell:
 
    ```sh
    exec zsh
