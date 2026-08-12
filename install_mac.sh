@@ -18,6 +18,7 @@ echo "Installing Homebrew dependencies"
 brew install tmux cscope universal-ctags
 brew install felixkratz/formulae/borders
 brew install --cask nikitabobko/tap/aerospace
+brew install --cask mos
 
 echo "Installing rc files"
 "$script_dir/copy_rc_files.sh"
@@ -25,6 +26,9 @@ echo "Installing rc files"
 
 echo "Starting AeroSpace"
 open -g -a AeroSpace
+
+echo "Starting Mos"
+open -g -a Mos
 
 aerospace_ready=false
 for ((attempt = 1; attempt <= 15; attempt++)); do
@@ -41,4 +45,4 @@ if [[ "$aerospace_ready" != true ]]; then
 fi
 
 echo
-echo "macOS setup complete. Grant Accessibility access to AeroSpace if prompted."
+echo "macOS setup complete. Grant Accessibility access to AeroSpace and Mos if prompted."
