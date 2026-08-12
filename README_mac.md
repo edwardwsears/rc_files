@@ -1,8 +1,8 @@
 # macOS setup
 
 The macOS installer requires [Homebrew](https://brew.sh). It installs the
-shared shell tools, AeroSpace, JankyBorders, and aerospace-swipe; copies the
-shared and macOS-specific rc files; and initializes zsh.
+shared shell tools, AeroSpace, and JankyBorders; copies the shared and
+macOS-specific rc files; and initializes zsh.
 
 1. Run the installer:
 
@@ -10,7 +10,7 @@ shared and macOS-specific rc files; and initializes zsh.
    ./install_mac.sh
    ```
 
-2. Grant Accessibility access to AeroSpace and AerospaceSwipe if macOS asks.
+2. Grant Accessibility access to AeroSpace if macOS asks.
 
 3. If this is the first Vim setup, use the existing shared script:
 
@@ -25,6 +25,5 @@ shared and macOS-specific rc files; and initializes zsh.
    ```
 
 `hotkeys.ahk` is Windows-specific and is not loaded on macOS.
-`.aerospace.toml` and `.config/aerospace-swipe/config.json` are
-macOS-specific and are only managed by `copy_rc_files.sh` when running on
-macOS.
+`.aerospace.toml` is macOS-specific and is only managed by
+`copy_rc_files.sh` when running on macOS.

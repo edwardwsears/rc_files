@@ -13,7 +13,6 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
     files+=(
         .zshrc_common_mac
         .aerospace.toml
-        .config/aerospace-swipe/config.json
     )
 fi
 

@@ -3,8 +3,6 @@
 set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-swipe_dir="$HOME/.local/share/aerospace-swipe"
-swipe_service="gui/$(id -u)/com.acsandmann.swipe"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
     echo "This installer only supports macOS." >&2
@@ -42,23 +40,5 @@ if [[ "$aerospace_ready" != true ]]; then
     exit 1
 fi
 
-echo "Installing aerospace-swipe"
-if [[ -d "$swipe_dir/.git" ]]; then
-    git -C "$swipe_dir" pull --ff-only
-elif [[ -e "$swipe_dir" ]]; then
-    echo "$swipe_dir exists but is not an aerospace-swipe Git checkout." >&2
-    exit 1
-else
-    mkdir -p "$(dirname "$swipe_dir")"
-    git clone https://github.com/acsandmann/aerospace-swipe.git "$swipe_dir"
-fi
-
-if launchctl print "$swipe_service" >/dev/null 2>&1; then
-    make -C "$swipe_dir" all bundle install_plist
-    launchctl kickstart -k "$swipe_service"
-else
-    make -C "$swipe_dir" install
-fi
-
 echo
-echo "macOS setup complete. Grant Accessibility access to AeroSpace and AerospaceSwipe if prompted."
+echo "macOS setup complete. Grant Accessibility access to AeroSpace if prompted."
