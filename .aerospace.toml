@@ -88,6 +88,9 @@ gaps.outer.right =      5
 
 # Physical-first workspace layout. Monitor numbers are ordered left to right.
 # If a requested monitor is disconnected, AeroSpace uses the main monitor.
+# Switch profiles with service mode + 1 (three across) or 2 (stacked).
+# BEGIN managed monitor layout profile
+# Active profile: 1 (three across; columns map to monitors)
 [workspace-to-monitor-force-assignment]
 '1.1-q' = [1, 'main']
 '2.1-a' = [1, 'main']
@@ -100,6 +103,7 @@ gaps.outer.right =      5
 '1.3-e' = [3, 'main']
 '2.3-d' = [3, 'main']
 '3.3-c' = [3, 'main']
+# END managed monitor layout profile
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -211,6 +215,8 @@ gaps.outer.right =      5
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
+    1 = ['exec-and-forget ~/.config/aerospace/switch-monitor-layout.sh 1', 'mode main']
+    2 = ['exec-and-forget ~/.config/aerospace/switch-monitor-layout.sh 2', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
     f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
     backspace = ['close-all-windows-but-current', 'mode main']

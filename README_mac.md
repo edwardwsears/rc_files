@@ -27,3 +27,8 @@ macOS-specific rc files; and initializes zsh.
 `hotkeys.ahk` is Windows-specific and is not loaded on macOS.
 `.aerospace.toml` is macOS-specific and is only managed by
 `copy_rc_files.sh` when running on macOS.
+
+In AeroSpace service mode (`Option+Shift+;`), press `1` for the normal
+three-monitor horizontal profile or `2` for the work profile with the Dell
+display above the built-in display. The selected profile remains statically
+assigned until another profile is selected.

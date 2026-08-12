@@ -13,6 +13,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
     files+=(
         .zshrc_common_mac
         .aerospace.toml
+        .config/aerospace/switch-monitor-layout.sh
     )
 fi
 
