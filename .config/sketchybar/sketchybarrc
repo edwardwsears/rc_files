@@ -1,0 +1,112 @@
+#!/bin/bash
+
+set -u
+
+HYPRSPACE_BIN="/opt/homebrew/bin/hyprspace"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+if [[ ! -x "$HYPRSPACE_BIN" ]]; then
+    exit 0
+fi
+
+sketchybar --bar \
+    position=bottom \
+    display=all \
+    height=32 \
+    margin=6 \
+    padding_left=8 \
+    padding_right=8 \
+    color=0xcc181818 \
+    border_width=1 \
+    border_color=0x665a5a5a \
+    corner_radius=9 \
+    blur_radius=20 \
+    topmost=window \
+    sticky=on
+
+sketchybar --default \
+    icon.font="SF Pro:Semibold:14.0" \
+    icon.color=0xffe8e8e8 \
+    icon.padding_left=10 \
+    icon.padding_right=6 \
+    label.drawing=on \
+    label.font="SF Pro:Regular:11.0" \
+    label.color=0xffb8b8b8 \
+    label.max_chars=22 \
+    label.padding_left=0 \
+    label.padding_right=10 \
+    background.drawing=on \
+    background.color=0x55353535 \
+    background.border_width=1 \
+    background.border_color=0x665a5a5a \
+    background.corner_radius=7 \
+    background.height=24 \
+    padding_left=3 \
+    padding_right=3
+
+sketchybar --add event hyprspace_workspace_change
+
+sketchybar_displays=()
+while IFS= read -r display_id; do
+    sketchybar_displays+=("$display_id")
+done < <(sketchybar --query displays | /usr/bin/jq -r 'sort_by([.frame.x, .frame.y])[] | .["arrangement-id"]')
+
+workspace_groups=""
+for monitor_id in $("$HYPRSPACE_BIN" list-monitors --format '%{monitor-id}' 2>/dev/null); do
+    display_index=$((monitor_id - 1))
+    sketchybar_display="${sketchybar_displays[$display_index]:-$monitor_id}"
+    visible_workspaces="$("$HYPRSPACE_BIN" list-workspaces --monitor "$monitor_id" --visible 2>/dev/null)"
+    monitor_workspaces="$("$HYPRSPACE_BIN" list-workspaces --monitor "$monitor_id" 2>/dev/null)"
+    workspace_group="$(printf '%s\n' "$monitor_workspaces" | /usr/bin/paste -sd, -)"
+    workspace_groups="${workspace_groups:+$workspace_groups;}$workspace_group"
+
+    for workspace in $monitor_workspaces; do
+        background_color=0x55353535
+        border_color=0x665a5a5a
+        icon_color=0xffe8e8e8
+        label_color=0xffb8b8b8
+        if printf '%s\n' "$visible_workspaces" | grep -qxF "$workspace"; then
+            background_color=0xffff9500
+            border_color=0xffffb340
+            icon_color=0xff181818
+            label_color=0xff303030
+        fi
+
+        sketchybar --add item "space.$workspace" left \
+            --set "space.$workspace" \
+                display="$sketchybar_display" \
+                icon="$workspace" \
+                icon.color="$icon_color" \
+                label="—" \
+                label.color="$label_color" \
+                background.color="$background_color" \
+                background.border_color="$border_color" \
+                click_script="$HYPRSPACE_BIN workspace $workspace"
+    done
+done
+
+sketchybar --add item hyprspace_workspace_observer left \
+    --set hyprspace_workspace_observer \
+        drawing=off \
+        script="$PLUGIN_DIR/hyprspace_workspace.sh '$workspace_groups'" \
+    --subscribe hyprspace_workspace_observer hyprspace_workspace_change
+
+sketchybar --add item hyprspace_windows_observer left \
+    --set hyprspace_windows_observer \
+        drawing=off \
+        update_freq=5 \
+        script="$PLUGIN_DIR/hyprspace_windows.sh '$workspace_groups'"
+
+sketchybar --add item datetime right \
+    --set datetime \
+        icon.drawing=off \
+        label.drawing=on \
+        label.font="SF Pro:Semibold:12.0" \
+        label.color=0xffe8e8e8 \
+        label.max_chars=19 \
+        label.padding_left=10 \
+        label.padding_right=10 \
+        update_freq=10 \
+        script="$PLUGIN_DIR/datetime.sh"
+
+sketchybar --update

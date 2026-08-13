@@ -108,4 +108,8 @@ if ! hyprspace reload-config; then
     exit 1
 fi
 
+if [[ -x /opt/homebrew/bin/sketchybar ]]; then
+    /opt/homebrew/bin/sketchybar --reload || true
+fi
+
 echo "Hyprspace monitor layout $profile enabled: $profile_name"
