@@ -96,6 +96,7 @@ gaps.outer.right = 5
     alt-equal = 'resize smart +50'
     # Temporarily maximize the focused window without changing the tiling tree.
     alt-m = 'fullscreen'
+    alt-esc = 'fullscreen off'
 
     alt-1 = 'focus-monitor 1 main'
     alt-2 = 'focus-monitor 2 main'
