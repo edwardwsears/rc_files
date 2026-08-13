@@ -46,6 +46,11 @@ sketchybar --default \
 
 sketchybar --add event hyprspace_workspace_change
 
+# display_change also fires when focus moves between monitors. Record the
+# current count so the observer can distinguish that from a hot-plug event.
+display_count_state="${TMPDIR:-/tmp}/sketchybar-display-count-${UID}.state"
+sketchybar --query displays | /usr/bin/jq -r 'length' > "$display_count_state"
+
 sketchybar --add item display_observer left \
     --set display_observer \
         drawing=off \

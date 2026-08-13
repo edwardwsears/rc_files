@@ -1,18 +1,17 @@
 #!/bin/bash
 
-cooldown_file="${TMPDIR:-/tmp}/sketchybar-display-change-${UID}.cooldown"
-now="$(date +%s)"
+display_count_state="${TMPDIR:-/tmp}/sketchybar-display-count-${UID}.state"
+current_count="$(sketchybar --query displays | /usr/bin/jq -r 'length')"
 
-if [[ -f "$cooldown_file" ]]; then
-    last_reload="$(stat -f '%m' "$cooldown_file")"
-    if (( now - last_reload < 5 )); then
+if [[ -f "$display_count_state" ]]; then
+    previous_count="$(<"$display_count_state")"
+    if [[ "$current_count" = "$previous_count" ]]; then
         exit 0
     fi
 fi
 
-touch "$cooldown_file"
+printf '%s\n' "$current_count" > "$display_count_state"
 
 # Give macOS and Hyprspace time to settle their display/workspace mappings.
 sleep 1
-touch "$cooldown_file"
 sketchybar --reload
