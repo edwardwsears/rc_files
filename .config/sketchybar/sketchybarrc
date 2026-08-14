@@ -79,7 +79,11 @@ for monitor_id in $("$HYPRSPACE_BIN" list-monitors --format '%{monitor-id}' 2>/d
 
     for workspace in $monitor_workspaces; do
         background_color=0x55353535
-        border_color=0x665a5a5a
+        case "$workspace" in
+            4-q|5-w|6-e) border_color=0xaa5e81ac ;;
+            7-a|8-s|9-d) border_color=0xaaa3be8c ;;
+            *) border_color=0x665a5a5a ;;
+        esac
         icon_color=0xffe8e8e8
         label_color=0xffb8b8b8
         if printf '%s\n' "$visible_workspaces" | grep -qxF "$workspace"; then

@@ -17,6 +17,12 @@ for group in "${groups[@]}"; do
 
     IFS=',' read -r -a workspaces <<< "$group"
     for workspace in "${workspaces[@]}"; do
+        case "$workspace" in
+            4-q|5-w|6-e) row_border_color=0xaa5e81ac ;;
+            7-a|8-s|9-d) row_border_color=0xaaa3be8c ;;
+            *) row_border_color=0x665a5a5a ;;
+        esac
+
         if [[ "$workspace" = "$focused_workspace" ]]; then
             updates+=(
                 --set "space.$workspace"
@@ -31,7 +37,7 @@ for group in "${groups[@]}"; do
                 icon.color=0xffe8e8e8
                 label.color=0xffb8b8b8
                 background.color=0x55353535
-                background.border_color=0x665a5a5a
+                background.border_color="$row_border_color"
             )
         fi
     done
