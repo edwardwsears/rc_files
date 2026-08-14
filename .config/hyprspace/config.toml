@@ -65,6 +65,7 @@ gaps.outer.right = 5
 [mode.main.binding]
     cmd-h = []
     cmd-alt-h = []
+    cmd-m = []
 
     # Reuse the current workspace switcher with the Hyprspace CLI.
     alt-space = '''exec-and-forget env \
@@ -76,13 +77,9 @@ gaps.outer.right = 5
 
     # Focus windows directionally across monitor boundaries.
     alt-h = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail left || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-left = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail left || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-j = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail down || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-down = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail down || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-k = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail up || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-up = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail up || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-l = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail right || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-right = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail right || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
 
     alt-pageDown = ['workspace --wrap-around next', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-pageUp = ['workspace --wrap-around prev', 'move-mouse window-force-center || move-mouse monitor-force-center']

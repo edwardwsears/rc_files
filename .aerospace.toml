@@ -147,13 +147,9 @@ gaps.outer.right =      5
     # Focus windows across visible monitors, then stop at the outer edge.
     # Focus windows directionally across monitor boundaries.
     alt-h = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail left || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-left = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail left || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-j = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail down || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-down = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail down || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-k = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail up || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-up = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail up || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-l = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail right || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-right = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail right || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
 
     alt-pageDown = ['focus --wrap-around dfs-next', 'move-mouse window-force-center']
     alt-pageUp = ['focus --wrap-around dfs-prev', 'move-mouse window-force-center']
