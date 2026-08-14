@@ -12,17 +12,17 @@ case "$profile" in
         assignments=$(cat <<'EOF'
 # Active profile: 1 (three across; columns map to monitors)
 [workspace-to-monitor-force-assignment]
-'1-q' = [1, 'main']
-'4-a' = [1, 'main']
-'7-z' = [1, 'main']
+'1' = [1, 'main']
+'4-q' = [1, 'main']
+'7-a' = [1, 'main']
 
-'2-w' = [2, 'main']
-'5-s' = [2, 'main']
-'8-x' = [2, 'main']
+'2' = [2, 'main']
+'5-w' = [2, 'main']
+'8-s' = [2, 'main']
 
-'3-e' = [3, 'main']
-'6-d' = [3, 'main']
-'9-c' = [3, 'main']
+'3' = [3, 'main']
+'6-e' = [3, 'main']
+'9-d' = [3, 'main']
 EOF
         )
         ;;
@@ -31,17 +31,17 @@ EOF
         assignments=$(cat <<'EOF'
 # Active profile: 2 (stacked; keyboard rows map to monitors)
 [workspace-to-monitor-force-assignment]
-'1-q' = ['DELL P3424WEB', 'main']
-'2-w' = ['DELL P3424WEB', 'main']
-'3-e' = ['DELL P3424WEB', 'main']
+'1' = ['DELL P3424WEB', 'main']
+'2' = ['DELL P3424WEB', 'main']
+'3' = ['DELL P3424WEB', 'main']
 
-'4-a' = ['Built-in Retina Display', 'main']
-'5-s' = ['Built-in Retina Display', 'main']
-'6-d' = ['Built-in Retina Display', 'main']
+'4-q' = ['Built-in Retina Display', 'main']
+'5-w' = ['Built-in Retina Display', 'main']
+'6-e' = ['Built-in Retina Display', 'main']
 
-'7-z' = 'main'
-'8-x' = 'main'
-'9-c' = 'main'
+'7-a' = 'main'
+'8-s' = 'main'
+'9-d' = 'main'
 EOF
         )
         ;;
