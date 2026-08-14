@@ -93,7 +93,7 @@ gaps.outer.right = 5
     alt-equal = 'resize smart +50'
     # Temporarily maximize the focused window without changing the tiling tree.
     alt-m = 'fullscreen'
-    alt-esc = 'fullscreen off'
+    alt-esc = 'exec-and-forget /Users/esears/.config/hyprspace/exit-all-fullscreen.sh'
 
     # The number row addresses all workspaces; qwe and asd alias rows two and three.
     alt-1 = ['workspace 1', 'move-mouse window-force-center || move-mouse monitor-force-center']
