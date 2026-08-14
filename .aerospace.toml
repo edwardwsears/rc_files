@@ -86,9 +86,8 @@ gaps.outer.bottom =     5
 gaps.outer.top =        5
 gaps.outer.right =      5
 
-# Physical-first workspace layout. Monitor numbers are ordered left to right.
-# If a requested monitor is disconnected, AeroSpace uses the main monitor.
-# Switch profiles with service mode + 1 (three across) or 2 (stacked).
+# Positional workspace layout: columns map to monitors in profile 1, rows in profile 2.
+# Missing monitor positions fall back to the main monitor.
 # BEGIN managed monitor layout profile
 # Active profile: 1 (three across; columns map to monitors)
 [workspace-to-monitor-force-assignment]

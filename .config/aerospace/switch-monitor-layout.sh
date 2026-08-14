@@ -27,21 +27,21 @@ EOF
         )
         ;;
     2)
-        profile_name="stacked work displays"
+        profile_name="three stacked"
         assignments=$(cat <<'EOF'
-# Active profile: 2 (stacked; keyboard rows map to monitors)
+# Active profile: 2 (three stacked; rows map to monitors)
 [workspace-to-monitor-force-assignment]
-'1' = ['DELL P3424WEB', 'main']
-'2' = ['DELL P3424WEB', 'main']
-'3' = ['DELL P3424WEB', 'main']
+'1' = [1, 'main']
+'2' = [1, 'main']
+'3' = [1, 'main']
 
-'4-q' = ['Built-in Retina Display', 'main']
-'5-w' = ['Built-in Retina Display', 'main']
-'6-e' = ['Built-in Retina Display', 'main']
+'4-q' = [2, 'main']
+'5-w' = [2, 'main']
+'6-e' = [2, 'main']
 
-'7-a' = 'main'
-'8-s' = 'main'
-'9-d' = 'main'
+'7-a' = [3, 'main']
+'8-s' = [3, 'main']
+'9-d' = [3, 'main']
 EOF
         )
         ;;
