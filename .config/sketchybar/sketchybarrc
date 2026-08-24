@@ -112,11 +112,56 @@ sketchybar --add item hyprspace_workspace_observer left \
         script="$PLUGIN_DIR/hyprspace_workspace.sh '$workspace_groups'" \
     --subscribe hyprspace_workspace_observer hyprspace_workspace_change
 
+window_state="${TMPDIR:-/tmp}/sketchybar-hyprspace-windows-${UID}.state"
+: > "$window_state"
+
 sketchybar --add item hyprspace_windows_observer left \
     --set hyprspace_windows_observer \
         drawing=off \
-        update_freq=5 \
-        script="$PLUGIN_DIR/hyprspace_windows.sh '$workspace_groups'"
+        update_freq=30 \
+        script="$PLUGIN_DIR/hyprspace_windows.sh '$workspace_groups'" \
+    --subscribe hyprspace_windows_observer \
+        hyprspace_workspace_change space_windows_change
+
+layout_profile_drawing=off
+layout_profile_icon="L?"
+layout_profile_label="?"
+layout_profile_background=0x55353535
+layout_profile_border=0x665a5a5a
+
+if (( ${#sketchybar_displays[@]} > 1 )); then
+    layout_profile_drawing=on
+    layout_profile="$(/usr/bin/awk '/^# Active profile: [12] / { print $4; exit }' "$HOME/.config/hyprspace/config.toml")"
+    case "$layout_profile" in
+        1)
+            layout_profile_icon="L1"
+            layout_profile_label="↔"
+            ;;
+        2)
+            layout_profile_icon="L2"
+            layout_profile_label="↕"
+            layout_profile_background=0x445e81ac
+            layout_profile_border=0xaa5e81ac
+            ;;
+    esac
+fi
+
+sketchybar --add item layout_profile right \
+    --set layout_profile \
+        drawing="$layout_profile_drawing" \
+        icon="$layout_profile_icon" \
+        icon.font="SF Pro:Semibold:12.0" \
+        icon.color=0xffe8e8e8 \
+        icon.padding_left=8 \
+        icon.padding_right=4 \
+        label="$layout_profile_label" \
+        label.font="SF Pro:Semibold:13.0" \
+        label.color=0xffb8b8b8 \
+        label.padding_left=0 \
+        label.padding_right=8 \
+        background.color="$layout_profile_background" \
+        background.border_color="$layout_profile_border" \
+        click_script="$HOME/.config/hyprspace/switch-monitor-layout.sh toggle"
 
 sketchybar --add item datetime right \
     --set datetime \
@@ -137,6 +182,8 @@ sketchybar --add item datetime right \
         popup.background.border_width=1 \
         popup.background.border_color=0x665a5a5a \
         popup.background.corner_radius=9
+
+sketchybar --move layout_profile after datetime
 
 for timezone in california eastern israel india; do
     sketchybar --add item "timezone.$timezone" popup.datetime \

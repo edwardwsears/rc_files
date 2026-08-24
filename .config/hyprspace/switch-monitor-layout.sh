@@ -7,6 +7,18 @@ config_path="$HOME/.config/hyprspace/config.toml"
 start_marker="# BEGIN managed monitor layout profile"
 end_marker="# END managed monitor layout profile"
 
+if [[ "$profile" == "toggle" ]]; then
+    current_profile="$(awk '/^# Active profile: [12] / { print $4; exit }' "$config_path")"
+    case "$current_profile" in
+        1) profile=2 ;;
+        2) profile=1 ;;
+        *)
+            echo "Unable to determine the active monitor layout profile." >&2
+            exit 1
+            ;;
+    esac
+fi
+
 case "$profile" in
     1)
         profile_name="three across"
@@ -47,7 +59,7 @@ EOF
         )
         ;;
     *)
-        echo "Usage: $0 {1|2}" >&2
+        echo "Usage: $0 {1|2|toggle}" >&2
         exit 2
         ;;
 esac

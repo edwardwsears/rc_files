@@ -9,26 +9,33 @@ case "${SENDER:-}" in
         ;;
 esac
 
-california_zone="$(TZ=America/Los_Angeles /bin/date '+%Z')"
-eastern_zone="$(TZ=America/New_York /bin/date '+%Z')"
-israel_zone="$(TZ=Asia/Jerusalem /bin/date '+%Z')"
-india_zone="$(TZ=Asia/Kolkata /bin/date '+%Z')"
+if [ "$action" != "toggle" ]; then
+    sketchybar --set datetime label="$(/bin/date '+%Y-%m-%d %-I:%M %p')"
+    exit 0
+fi
+
+popup_drawing="$(sketchybar --query datetime | /usr/bin/jq -r '.popup.drawing')"
+if [ "$popup_drawing" = "on" ]; then
+    sketchybar --set datetime popup.drawing=off
+    exit 0
+fi
+
+california="$(TZ=America/Los_Angeles /bin/date '+%Z|%Y-%m-%d %I:%M %p')"
+eastern="$(TZ=America/New_York /bin/date '+%Z|%Y-%m-%d %I:%M %p')"
+israel="$(TZ=Asia/Jerusalem /bin/date '+%Z|%Y-%m-%d %I:%M %p')"
+india="$(TZ=Asia/Kolkata /bin/date '+%Z|%Y-%m-%d %I:%M %p')"
 
 sketchybar \
-    --set datetime label="$(/bin/date '+%Y-%m-%d %-I:%M %p')" \
     --set timezone.california \
-        icon="Pacific ($california_zone)" \
-        label="$(TZ=America/Los_Angeles /bin/date '+%Y-%m-%d %I:%M %p')" \
+        icon="Pacific (${california%%|*})" \
+        label="${california#*|}" \
     --set timezone.eastern \
-        icon="Eastern ($eastern_zone)" \
-        label="$(TZ=America/New_York /bin/date '+%Y-%m-%d %I:%M %p')" \
+        icon="Eastern (${eastern%%|*})" \
+        label="${eastern#*|}" \
     --set timezone.israel \
-        icon="Israel ($israel_zone)" \
-        label="$(TZ=Asia/Jerusalem /bin/date '+%Y-%m-%d %I:%M %p')" \
+        icon="Israel (${israel%%|*})" \
+        label="${israel#*|}" \
     --set timezone.india \
-        icon="India ($india_zone)" \
-        label="$(TZ=Asia/Kolkata /bin/date '+%Y-%m-%d %I:%M %p')"
-
-if [ "$action" = "toggle" ]; then
-    sketchybar --set datetime popup.drawing=toggle
-fi
+        icon="India (${india%%|*})" \
+        label="${india#*|}" \
+    --set datetime popup.drawing=on
