@@ -30,9 +30,9 @@ macOS-specific rc files; and initializes zsh.
 
 Workspaces use stable keyboard rows regardless of display arrangement:
 
-- `Option+1` through `Option+0` select workspaces on the main display.
-- `Option+Q` through `Option+P` select workspaces on the second display.
-- `Option+A` through `Option+G` select workspaces on the third display.
+- `Option+1` through `Option+0` select workspaces on the left display.
+- `Option+Q` through `Option+P` select workspaces on the center display.
+- `Option+A` through `Option+G` select workspaces on the right display.
 - Add `Shift` to move the focused window to that workspace and follow it.
 
 The number-row workspaces are named `1` through `10`, with `Option+0` selecting

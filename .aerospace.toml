@@ -89,33 +89,33 @@ gaps.outer.right =      5
 # Workspace ownership follows keyboard rows regardless of display arrangement.
 # Missing secondary or third displays fall back to the macOS main display.
 [workspace-to-monitor-force-assignment]
-'1' = 'main'
-'2' = 'main'
-'3' = 'main'
-'4' = 'main'
-'5' = 'main'
-'6' = 'main'
-'7' = 'main'
-'8' = 'main'
-'9' = 'main'
-'10' = 'main'
+'1' = [1, 'main']
+'2' = [1, 'main']
+'3' = [1, 'main']
+'4' = [1, 'main']
+'5' = [1, 'main']
+'6' = [1, 'main']
+'7' = [1, 'main']
+'8' = [1, 'main']
+'9' = [1, 'main']
+'10' = [1, 'main']
 
-'11-q' = ['^DELL SE2422HX$', 1, 'main']
-'12-w' = ['^DELL SE2422HX$', 1, 'main']
-'13-e' = ['^DELL SE2422HX$', 1, 'main']
-'14-r' = ['^DELL SE2422HX$', 1, 'main']
-'15-t' = ['^DELL SE2422HX$', 1, 'main']
-'16-y' = ['^DELL SE2422HX$', 1, 'main']
-'17-u' = ['^DELL SE2422HX$', 1, 'main']
-'18-i' = ['^DELL SE2422HX$', 1, 'main']
-'19-o' = ['^DELL SE2422HX$', 1, 'main']
-'20-p' = ['^DELL SE2422HX$', 1, 'main']
+'11-q' = [2, 'main']
+'12-w' = [2, 'main']
+'13-e' = [2, 'main']
+'14-r' = [2, 'main']
+'15-t' = [2, 'main']
+'16-y' = [2, 'main']
+'17-u' = [2, 'main']
+'18-i' = [2, 'main']
+'19-o' = [2, 'main']
+'20-p' = [2, 'main']
 
-'21-a' = ['^Built-in Retina Display$', 3, 'main']
-'22-s' = ['^Built-in Retina Display$', 3, 'main']
-'23-d' = ['^Built-in Retina Display$', 3, 'main']
-'24-f' = ['^Built-in Retina Display$', 3, 'main']
-'25-g' = ['^Built-in Retina Display$', 3, 'main']
+'21-a' = [3, 'main']
+'22-s' = [3, 'main']
+'23-d' = [3, 'main']
+'24-f' = [3, 'main']
+'25-g' = [3, 'main']
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
