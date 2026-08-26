@@ -50,13 +50,13 @@ automatically-unhide-macos-hidden-apps = false
 
 # List of workspaces that should stay alive even when they contain no windows,
 # even when they are invisible.
-# Naming convention: number-only top row, then number-letter aliases (for example, 6-e).
+# The first three keys in each monitor row stay alive; the rest are on-demand.
 # This config option is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
 persistent-workspaces = [
     '1', '2', '3',
-    '4-q', '5-w', '6-e',
-    '7-a', '8-s', '9-d',
+    '11-q', '12-w', '13-e',
+    '21-a', '22-s', '23-d',
 ]
 
 # A callback that runs every time binding mode changes
@@ -86,23 +86,36 @@ gaps.outer.bottom =     5
 gaps.outer.top =        5
 gaps.outer.right =      5
 
-# Positional workspace layout: columns map to monitors in profile 1, rows in profile 2.
-# Missing monitor positions fall back to the main monitor.
-# BEGIN managed monitor layout profile
-# Active profile: 1 (three across; columns map to monitors)
+# Workspace ownership follows keyboard rows regardless of display arrangement.
+# Missing secondary or third displays fall back to the macOS main display.
 [workspace-to-monitor-force-assignment]
-'1' = [1, 'main']
-'4-q' = [1, 'main']
-'7-a' = [1, 'main']
+'1' = 'main'
+'2' = 'main'
+'3' = 'main'
+'4' = 'main'
+'5' = 'main'
+'6' = 'main'
+'7' = 'main'
+'8' = 'main'
+'9' = 'main'
+'10' = 'main'
 
-'2' = [2, 'main']
-'5-w' = [2, 'main']
-'8-s' = [2, 'main']
+'11-q' = ['^DELL SE2422HX$', 1, 'main']
+'12-w' = ['^DELL SE2422HX$', 1, 'main']
+'13-e' = ['^DELL SE2422HX$', 1, 'main']
+'14-r' = ['^DELL SE2422HX$', 1, 'main']
+'15-t' = ['^DELL SE2422HX$', 1, 'main']
+'16-y' = ['^DELL SE2422HX$', 1, 'main']
+'17-u' = ['^DELL SE2422HX$', 1, 'main']
+'18-i' = ['^DELL SE2422HX$', 1, 'main']
+'19-o' = ['^DELL SE2422HX$', 1, 'main']
+'20-p' = ['^DELL SE2422HX$', 1, 'main']
 
-'3' = [3, 'main']
-'6-e' = [3, 'main']
-'9-d' = [3, 'main']
-# END managed monitor layout profile
+'21-a' = ['^Built-in Retina Display$', 3, 'main']
+'22-s' = ['^Built-in Retina Display$', 3, 'main']
+'23-d' = ['^Built-in Retina Display$', 3, 'main']
+'24-f' = ['^Built-in Retina Display$', 3, 'main']
+'25-g' = ['^Built-in Retina Display$', 3, 'main']
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -150,8 +163,8 @@ gaps.outer.right =      5
     alt-k = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail up || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-l = ['focus --boundaries all-monitors-outer-frame --boundaries-action fail right || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
 
-    alt-pageDown = ['focus --wrap-around dfs-next', 'move-mouse window-force-center']
-    alt-pageUp = ['focus --wrap-around dfs-prev', 'move-mouse window-force-center']
+    alt-pageDown = ['workspace --wrap-around next', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-pageUp = ['workspace --wrap-around prev', 'move-mouse window-force-center || move-mouse monitor-force-center']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
     alt-shift-h = 'move left'
@@ -164,39 +177,64 @@ gaps.outer.right =      5
     alt-equal = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    # The number row addresses all workspaces; qwe and asd alias rows two and three.
+    # Each keyboard row owns a stable monitor. Only the first three workspaces
+    # in each row are persistent; the rest are created on demand.
     alt-1 = ['workspace 1', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-2 = ['workspace 2', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-3 = ['workspace 3', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-4 = ['workspace 4-q', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-5 = ['workspace 5-w', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-6 = ['workspace 6-e', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-7 = ['workspace 7-a', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-8 = ['workspace 8-s', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-9 = ['workspace 9-d', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-q = ['workspace 4-q', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-w = ['workspace 5-w', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-e = ['workspace 6-e', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-a = ['workspace 7-a', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-s = ['workspace 8-s', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-d = ['workspace 9-d', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-4 = ['workspace 4', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-5 = ['workspace 5', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-6 = ['workspace 6', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-7 = ['workspace 7', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-8 = ['workspace 8', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-9 = ['workspace 9', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-0 = ['workspace 10', 'move-mouse window-force-center || move-mouse monitor-force-center']
+
+    alt-q = ['workspace 11-q', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-w = ['workspace 12-w', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-e = ['workspace 13-e', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-r = ['workspace 14-r', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-t = ['workspace 15-t', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-y = ['workspace 16-y', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-u = ['workspace 17-u', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-i = ['workspace 18-i', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-o = ['workspace 19-o', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-p = ['workspace 20-p', 'move-mouse window-force-center || move-mouse monitor-force-center']
+
+    alt-a = ['workspace 21-a', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-s = ['workspace 22-s', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-d = ['workspace 23-d', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-f = ['workspace 24-f', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-g = ['workspace 25-g', 'move-mouse window-force-center || move-mouse monitor-force-center']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1', 'move-mouse window-force-center']
     alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2', 'move-mouse window-force-center']
     alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3', 'move-mouse window-force-center']
-    alt-shift-4 = ['move-node-to-workspace 4-q', 'workspace 4-q', 'move-mouse window-force-center']
-    alt-shift-5 = ['move-node-to-workspace 5-w', 'workspace 5-w', 'move-mouse window-force-center']
-    alt-shift-6 = ['move-node-to-workspace 6-e', 'workspace 6-e', 'move-mouse window-force-center']
-    alt-shift-7 = ['move-node-to-workspace 7-a', 'workspace 7-a', 'move-mouse window-force-center']
-    alt-shift-8 = ['move-node-to-workspace 8-s', 'workspace 8-s', 'move-mouse window-force-center']
-    alt-shift-9 = ['move-node-to-workspace 9-d', 'workspace 9-d', 'move-mouse window-force-center']
-    alt-shift-q = ['move-node-to-workspace 4-q', 'workspace 4-q', 'move-mouse window-force-center']
-    alt-shift-w = ['move-node-to-workspace 5-w', 'workspace 5-w', 'move-mouse window-force-center']
-    alt-shift-e = ['move-node-to-workspace 6-e', 'workspace 6-e', 'move-mouse window-force-center']
-    alt-shift-a = ['move-node-to-workspace 7-a', 'workspace 7-a', 'move-mouse window-force-center']
-    alt-shift-s = ['move-node-to-workspace 8-s', 'workspace 8-s', 'move-mouse window-force-center']
-    alt-shift-d = ['move-node-to-workspace 9-d', 'workspace 9-d', 'move-mouse window-force-center']
+    alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4', 'move-mouse window-force-center']
+    alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5', 'move-mouse window-force-center']
+    alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6', 'move-mouse window-force-center']
+    alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7', 'move-mouse window-force-center']
+    alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8', 'move-mouse window-force-center']
+    alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9', 'move-mouse window-force-center']
+    alt-shift-0 = ['move-node-to-workspace 10', 'workspace 10', 'move-mouse window-force-center']
+
+    alt-shift-q = ['move-node-to-workspace 11-q', 'workspace 11-q', 'move-mouse window-force-center']
+    alt-shift-w = ['move-node-to-workspace 12-w', 'workspace 12-w', 'move-mouse window-force-center']
+    alt-shift-e = ['move-node-to-workspace 13-e', 'workspace 13-e', 'move-mouse window-force-center']
+    alt-shift-r = ['move-node-to-workspace 14-r', 'workspace 14-r', 'move-mouse window-force-center']
+    alt-shift-t = ['move-node-to-workspace 15-t', 'workspace 15-t', 'move-mouse window-force-center']
+    alt-shift-y = ['move-node-to-workspace 16-y', 'workspace 16-y', 'move-mouse window-force-center']
+    alt-shift-u = ['move-node-to-workspace 17-u', 'workspace 17-u', 'move-mouse window-force-center']
+    alt-shift-i = ['move-node-to-workspace 18-i', 'workspace 18-i', 'move-mouse window-force-center']
+    alt-shift-o = ['move-node-to-workspace 19-o', 'workspace 19-o', 'move-mouse window-force-center']
+    alt-shift-p = ['move-node-to-workspace 20-p', 'workspace 20-p', 'move-mouse window-force-center']
+
+    alt-shift-a = ['move-node-to-workspace 21-a', 'workspace 21-a', 'move-mouse window-force-center']
+    alt-shift-s = ['move-node-to-workspace 22-s', 'workspace 22-s', 'move-mouse window-force-center']
+    alt-shift-d = ['move-node-to-workspace 23-d', 'workspace 23-d', 'move-mouse window-force-center']
+    alt-shift-f = ['move-node-to-workspace 24-f', 'workspace 24-f', 'move-mouse window-force-center']
+    alt-shift-g = ['move-node-to-workspace 25-g', 'workspace 25-g', 'move-mouse window-force-center']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = ['workspace-back-and-forth', 'move-mouse window-force-center || move-mouse monitor-force-center']
@@ -210,8 +248,6 @@ gaps.outer.right =      5
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
-    1 = ['exec-and-forget ~/.config/aerospace/switch-monitor-layout.sh 1', 'mode main']
-    2 = ['exec-and-forget ~/.config/aerospace/switch-monitor-layout.sh 2', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
     f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
     backspace = ['close-all-windows-but-current', 'mode main']

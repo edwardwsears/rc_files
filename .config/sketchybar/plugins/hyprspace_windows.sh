@@ -4,13 +4,25 @@ set -u
 set -o pipefail
 
 HYPRSPACE_BIN="/opt/homebrew/bin/hyprspace"
-workspace_groups="${1:-}"
+workspace_order=(
+    1 2 3 4 5 6 7 8 9 10
+    11-q 12-w 13-e 14-r 15-t 16-y 17-u 18-i 19-o 20-p
+    21-a 22-s 23-d 24-f 25-g
+)
 window_state="${TMPDIR:-/tmp}/sketchybar-hyprspace-windows-${UID}.state"
 updates=()
 
-if [[ -z "$workspace_groups" ]]; then
-    exit 0
-fi
+is_known_workspace() {
+    local requested="$1"
+    local workspace
+
+    for workspace in "${workspace_order[@]}"; do
+        if [[ "$workspace" = "$requested" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
 
 if ! window_labels="$(
     "$HYPRSPACE_BIN" list-windows --all --format '%{workspace}|%{app-name}' 2>/dev/null |
@@ -38,17 +50,15 @@ if [[ -f "$window_state" && "$(<"$window_state")" = "$window_labels" ]]; then
 fi
 printf '%s\n' "$window_labels" > "$window_state"
 
-IFS=';' read -r -a groups <<< "$workspace_groups"
-for group in "${groups[@]}"; do
-    IFS=',' read -r -a workspaces <<< "$group"
-    for workspace in "${workspaces[@]}"; do
-        updates+=(--set "space.$workspace" label="—")
-    done
+for workspace in "${workspace_order[@]}"; do
+    updates+=(--set "space.$workspace" label="—")
 done
 
 while IFS='|' read -r workspace apps; do
     [[ -z "$workspace" || -z "$apps" ]] && continue
-    updates+=(--set "space.$workspace" label="$apps")
+    if is_known_workspace "$workspace"; then
+        updates+=(--set "space.$workspace" label="$apps")
+    fi
 done <<< "$window_labels"
 
 if (( ${#updates[@]} > 0 )); then
