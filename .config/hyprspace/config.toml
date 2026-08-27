@@ -98,6 +98,20 @@ gaps.outer.right = 5
 
     alt-pageDown = ['workspace --wrap-around next', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-pageUp = ['workspace --wrap-around prev', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    # Supply the complete row explicitly: native next/prev only sees workspaces
+    # that already exist, so it skips empty on-demand destinations.
+    alt-shift-pageDown = [
+        '''(test %{workspace} ~= '^[0-9]+$' && echo -- 1 2 3 4 5 6 7 8 9 10 | move-node-to-workspace --focus-follows-window --stdin next) \
+            || (test %{workspace} ~= '^(1[1-9]|20)-' && echo -- 11-q 12-w 13-e 14-r 15-t 16-y 17-u 18-i 19-o 20-p | move-node-to-workspace --focus-follows-window --stdin next) \
+            || (test %{workspace} ~= '^2[1-5]-' && echo -- 21-a 22-s 23-d 24-f 25-g | move-node-to-workspace --focus-follows-window --stdin next)''',
+        'move-mouse window-force-center',
+    ]
+    alt-shift-pageUp = [
+        '''(test %{workspace} ~= '^[0-9]+$' && echo -- 1 2 3 4 5 6 7 8 9 10 | move-node-to-workspace --focus-follows-window --stdin prev) \
+            || (test %{workspace} ~= '^(1[1-9]|20)-' && echo -- 11-q 12-w 13-e 14-r 15-t 16-y 17-u 18-i 19-o 20-p | move-node-to-workspace --focus-follows-window --stdin prev) \
+            || (test %{workspace} ~= '^2[1-5]-' && echo -- 21-a 22-s 23-d 24-f 25-g | move-node-to-workspace --focus-follows-window --stdin prev)''',
+        'move-mouse window-force-center',
+    ]
 
     alt-shift-h = 'move --boundaries all-monitors-outer-frame left'
     alt-shift-j = 'move --boundaries all-monitors-outer-frame down'

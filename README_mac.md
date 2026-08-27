@@ -41,4 +41,6 @@ sortable prefixes: `11-q` through `20-p` and `21-a` through `25-g`. Only `1`,
 `2`, `3`, `11-q`, `12-w`, `13-e`, `21-a`, `22-s`, and `23-d` are persistent.
 The remaining keys create on-demand workspaces which disappear after they
 become empty and invisible. `Option+PageUp` and `Option+PageDown` use the
-workspace manager's native per-monitor cycling order.
+workspace manager's native per-monitor cycling order. Add `Shift` to move the
+focused window to the previous or next workspace (including an empty one) and
+follow it.
