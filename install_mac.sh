@@ -19,7 +19,7 @@ brew install tmux cscope universal-ctags
 brew install felixkratz/formulae/borders
 brew install --cask nikitabobko/tap/aerospace
 brew install --cask mos
-brew install --cask shortcat
+brew install --cask homerow
 
 echo "Installing rc files"
 "$script_dir/copy_rc_files.sh"
@@ -31,8 +31,8 @@ open -g -a AeroSpace
 echo "Starting Mos"
 open -g -a Mos
 
-echo "Starting Shortcat"
-open -g -a Shortcat
+echo "Starting Homerow"
+open -g -a Homerow
 
 aerospace_ready=false
 for ((attempt = 1; attempt <= 15; attempt++)); do
@@ -49,4 +49,4 @@ if [[ "$aerospace_ready" != true ]]; then
 fi
 
 echo
-echo "macOS setup complete. Grant Accessibility access to AeroSpace, Mos, and Shortcat if prompted."
+echo "macOS setup complete. Grant Accessibility access to AeroSpace, Mos, and Homerow if prompted."

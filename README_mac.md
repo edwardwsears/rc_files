@@ -1,7 +1,7 @@
 # macOS setup
 
 The macOS installer requires [Homebrew](https://brew.sh). It installs the
-shared shell tools, AeroSpace, JankyBorders, Mos, and Shortcat; copies the
+shared shell tools, AeroSpace, JankyBorders, Mos, and Homerow; copies the
 shared and macOS-specific rc files; and initializes zsh.
 
 1. Run the installer:
@@ -10,7 +10,7 @@ shared and macOS-specific rc files; and initializes zsh.
    ./install_mac.sh
    ```
 
-2. Grant Accessibility access to AeroSpace, Mos, and Shortcat if macOS asks.
+2. Grant Accessibility access to AeroSpace, Mos, and Homerow if macOS asks.
 
 3. If this is the first Vim setup, use the existing shared script:
 
