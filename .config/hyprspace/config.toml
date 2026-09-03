@@ -96,8 +96,8 @@ gaps.outer.right = 5
     alt-k = ['focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail up || focus-monitor up || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-l = ['focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail right || focus-monitor right || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
 
-    alt-pageDown = ['workspace --wrap-around next', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-pageUp = ['workspace --wrap-around prev', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-pageDown = ['workspace next', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-pageUp = ['workspace prev', 'move-mouse window-force-center || move-mouse monitor-force-center']
     # Supply the complete row explicitly: native next/prev only sees workspaces
     # that already exist, so it skips empty on-demand destinations.
     cmd-alt-pageDown = [
