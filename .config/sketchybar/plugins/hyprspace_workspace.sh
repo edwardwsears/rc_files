@@ -10,6 +10,7 @@ workspace_order=(
     21-a 22-s 23-d 24-f 25-g
 )
 updates=()
+workspace_items=()
 
 if ! workspace_state="$(
     "$HYPRSPACE_BIN" list-workspaces --all \
@@ -25,6 +26,7 @@ done < <(sketchybar --query displays | /usr/bin/jq -r 'sort_by([.frame.x, .frame
 
 for workspace in "${workspace_order[@]}"; do
     updates+=(--set "space.$workspace" drawing=off)
+    workspace_items+=("space.$workspace")
 done
 
 while IFS='|' read -r workspace monitor_id is_visible; do
@@ -62,6 +64,8 @@ while IFS='|' read -r workspace monitor_id is_visible; do
         )
     fi
 done <<< "$workspace_state"
+
+updates+=(--reorder "${workspace_items[@]}")
 
 if (( ${#updates[@]} > 0 )); then
     sketchybar "${updates[@]}"
