@@ -86,7 +86,6 @@ gaps.outer.right = 5
         /Users/esears/aerospace-workspace-switcher/.build/release/aerospace-workspace-switcher'''
 
     alt-slash = 'layout tiles horizontal vertical'
-    alt-comma = 'layout accordion horizontal vertical'
 
     # Focus windows directionally across monitor boundaries.
     # While fullscreen, stay out of the hidden tiling tree and move only to the
