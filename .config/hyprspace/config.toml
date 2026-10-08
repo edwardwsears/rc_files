@@ -25,7 +25,7 @@ default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 
 # App activation (for example, opening a link) must not warp the pointer.
-# Directional focus and direct workspace selection also leave it in place.
+# All focus, workspace selection, and move-and-follow shortcuts leave it in place.
 on-focused-monitor-changed = []
 automatically-unhide-macos-hidden-apps = false
 
@@ -97,33 +97,29 @@ gaps.outer.right = 5
     alt-k = 'focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail up || focus-monitor up || true'
     alt-l = 'focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail right || focus-monitor right || true'
 
-    alt-pageDown = ['workspace next', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-pageUp = ['workspace prev', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-pageDown = ['workspace next']
+    alt-pageUp = ['workspace prev']
     # Supply the complete row explicitly: native next/prev only sees workspaces
     # that already exist, so it skips empty on-demand destinations.
     cmd-alt-pageDown = [
         '''(test %{workspace} ~= '^[0-9]+$' && echo -- 1 2 3 4 5 6 7 8 9 10 | workspace --stdin next) \
             || (test %{workspace} ~= '^(1[1-9]|20)-' && echo -- 11-q 12-w 13-e 14-r 15-t 16-y 17-u 18-i 19-o 20-p | workspace --stdin next) \
             || (test %{workspace} ~= '^2[1-5]-' && echo -- 21-a 22-s 23-d 24-f 25-g | workspace --stdin next)''',
-        'move-mouse window-force-center || move-mouse monitor-force-center',
     ]
     cmd-alt-pageUp = [
         '''(test %{workspace} ~= '^[0-9]+$' && echo -- 1 2 3 4 5 6 7 8 9 10 | workspace --stdin prev) \
             || (test %{workspace} ~= '^(1[1-9]|20)-' && echo -- 11-q 12-w 13-e 14-r 15-t 16-y 17-u 18-i 19-o 20-p | workspace --stdin prev) \
             || (test %{workspace} ~= '^2[1-5]-' && echo -- 21-a 22-s 23-d 24-f 25-g | workspace --stdin prev)''',
-        'move-mouse window-force-center || move-mouse monitor-force-center',
     ]
     alt-shift-pageDown = [
         '''(test %{workspace} ~= '^[0-9]+$' && echo -- 1 2 3 4 5 6 7 8 9 10 | move-node-to-workspace --focus-follows-window --stdin next) \
             || (test %{workspace} ~= '^(1[1-9]|20)-' && echo -- 11-q 12-w 13-e 14-r 15-t 16-y 17-u 18-i 19-o 20-p | move-node-to-workspace --focus-follows-window --stdin next) \
             || (test %{workspace} ~= '^2[1-5]-' && echo -- 21-a 22-s 23-d 24-f 25-g | move-node-to-workspace --focus-follows-window --stdin next)''',
-        'move-mouse window-force-center',
     ]
     alt-shift-pageUp = [
         '''(test %{workspace} ~= '^[0-9]+$' && echo -- 1 2 3 4 5 6 7 8 9 10 | move-node-to-workspace --focus-follows-window --stdin prev) \
             || (test %{workspace} ~= '^(1[1-9]|20)-' && echo -- 11-q 12-w 13-e 14-r 15-t 16-y 17-u 18-i 19-o 20-p | move-node-to-workspace --focus-follows-window --stdin prev) \
             || (test %{workspace} ~= '^2[1-5]-' && echo -- 21-a 22-s 23-d 24-f 25-g | move-node-to-workspace --focus-follows-window --stdin prev)''',
-        'move-mouse window-force-center',
     ]
 
     alt-shift-h = 'move --boundaries all-monitors-outer-frame left'
@@ -135,6 +131,8 @@ gaps.outer.right = 5
     alt-equal = 'resize smart +50'
     # Temporarily maximize the focused window without changing the tiling tree.
     alt-m = 'fullscreen'
+    # Bring the pointer to the focused window, or monitor if the workspace is empty.
+    alt-shift-m = 'move-mouse window-force-center || move-mouse monitor-force-center'
     alt-esc = 'exec-and-forget /Users/esears/.config/hyprspace/exit-all-fullscreen.sh'
 
     # Each keyboard row owns a stable monitor. Only the first three workspaces
@@ -168,35 +166,35 @@ gaps.outer.right = 5
     alt-f = 'workspace 24-f'
     alt-g = 'workspace 25-g'
 
-    alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1', 'move-mouse window-force-center']
-    alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2', 'move-mouse window-force-center']
-    alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3', 'move-mouse window-force-center']
-    alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4', 'move-mouse window-force-center']
-    alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5', 'move-mouse window-force-center']
-    alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6', 'move-mouse window-force-center']
-    alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7', 'move-mouse window-force-center']
-    alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8', 'move-mouse window-force-center']
-    alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9', 'move-mouse window-force-center']
-    alt-shift-0 = ['move-node-to-workspace 10', 'workspace 10', 'move-mouse window-force-center']
+    alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+    alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+    alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+    alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+    alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+    alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+    alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+    alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+    alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+    alt-shift-0 = ['move-node-to-workspace 10', 'workspace 10']
 
-    alt-shift-q = ['move-node-to-workspace 11-q', 'workspace 11-q', 'move-mouse window-force-center']
-    alt-shift-w = ['move-node-to-workspace 12-w', 'workspace 12-w', 'move-mouse window-force-center']
-    alt-shift-e = ['move-node-to-workspace 13-e', 'workspace 13-e', 'move-mouse window-force-center']
-    alt-shift-r = ['move-node-to-workspace 14-r', 'workspace 14-r', 'move-mouse window-force-center']
-    alt-shift-t = ['move-node-to-workspace 15-t', 'workspace 15-t', 'move-mouse window-force-center']
-    alt-shift-y = ['move-node-to-workspace 16-y', 'workspace 16-y', 'move-mouse window-force-center']
-    alt-shift-u = ['move-node-to-workspace 17-u', 'workspace 17-u', 'move-mouse window-force-center']
-    alt-shift-i = ['move-node-to-workspace 18-i', 'workspace 18-i', 'move-mouse window-force-center']
-    alt-shift-o = ['move-node-to-workspace 19-o', 'workspace 19-o', 'move-mouse window-force-center']
-    alt-shift-p = ['move-node-to-workspace 20-p', 'workspace 20-p', 'move-mouse window-force-center']
+    alt-shift-q = ['move-node-to-workspace 11-q', 'workspace 11-q']
+    alt-shift-w = ['move-node-to-workspace 12-w', 'workspace 12-w']
+    alt-shift-e = ['move-node-to-workspace 13-e', 'workspace 13-e']
+    alt-shift-r = ['move-node-to-workspace 14-r', 'workspace 14-r']
+    alt-shift-t = ['move-node-to-workspace 15-t', 'workspace 15-t']
+    alt-shift-y = ['move-node-to-workspace 16-y', 'workspace 16-y']
+    alt-shift-u = ['move-node-to-workspace 17-u', 'workspace 17-u']
+    alt-shift-i = ['move-node-to-workspace 18-i', 'workspace 18-i']
+    alt-shift-o = ['move-node-to-workspace 19-o', 'workspace 19-o']
+    alt-shift-p = ['move-node-to-workspace 20-p', 'workspace 20-p']
 
-    alt-shift-a = ['move-node-to-workspace 21-a', 'workspace 21-a', 'move-mouse window-force-center']
-    alt-shift-s = ['move-node-to-workspace 22-s', 'workspace 22-s', 'move-mouse window-force-center']
-    alt-shift-d = ['move-node-to-workspace 23-d', 'workspace 23-d', 'move-mouse window-force-center']
-    alt-shift-f = ['move-node-to-workspace 24-f', 'workspace 24-f', 'move-mouse window-force-center']
-    alt-shift-g = ['move-node-to-workspace 25-g', 'workspace 25-g', 'move-mouse window-force-center']
+    alt-shift-a = ['move-node-to-workspace 21-a', 'workspace 21-a']
+    alt-shift-s = ['move-node-to-workspace 22-s', 'workspace 22-s']
+    alt-shift-d = ['move-node-to-workspace 23-d', 'workspace 23-d']
+    alt-shift-f = ['move-node-to-workspace 24-f', 'workspace 24-f']
+    alt-shift-g = ['move-node-to-workspace 25-g', 'workspace 25-g']
 
-    alt-tab = ['workspace-back-and-forth', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-tab = ['workspace-back-and-forth']
 
     # Preserved for muscle memory, but this is a no-op while all workspaces are
     # force-assigned above. Use a monitor profile or remove the assignment first.
