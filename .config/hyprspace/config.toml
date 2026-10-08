@@ -24,7 +24,9 @@ accordion-padding = 20
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# App activation (for example, opening a link) must not warp the pointer.
+# Directional focus and direct workspace selection also leave it in place.
+on-focused-monitor-changed = []
 automatically-unhide-macos-hidden-apps = false
 
 persistent-workspaces = [
@@ -87,13 +89,13 @@ gaps.outer.right = 5
 
     alt-slash = 'layout tiles horizontal vertical'
 
-    # Focus windows directionally across monitor boundaries.
+    # Focus windows directionally across monitor boundaries without moving the pointer.
     # While fullscreen, stay out of the hidden tiling tree and move only to the
     # visible workspace on an adjacent monitor. Otherwise, focus tiles normally.
-    alt-h = ['focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail left || focus-monitor left || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-j = ['focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail down || focus-monitor down || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-k = ['focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail up || focus-monitor up || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-l = ['focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail right || focus-monitor right || true', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-h = 'focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail left || focus-monitor left || true'
+    alt-j = 'focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail down || focus-monitor down || true'
+    alt-k = 'focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail up || focus-monitor up || true'
+    alt-l = 'focus --fail-if-fullscreen --boundaries all-monitors-outer-frame --boundaries-action fail right || focus-monitor right || true'
 
     alt-pageDown = ['workspace next', 'move-mouse window-force-center || move-mouse monitor-force-center']
     alt-pageUp = ['workspace prev', 'move-mouse window-force-center || move-mouse monitor-force-center']
@@ -137,33 +139,34 @@ gaps.outer.right = 5
 
     # Each keyboard row owns a stable monitor. Only the first three workspaces
     # in each row are persistent; the rest are created on demand.
-    alt-1 = ['workspace 1', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-2 = ['workspace 2', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-3 = ['workspace 3', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-4 = ['workspace 4', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-5 = ['workspace 5', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-6 = ['workspace 6', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-7 = ['workspace 7', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-8 = ['workspace 8', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-9 = ['workspace 9', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-0 = ['workspace 10', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    # Direct workspace selection changes focus without moving the pointer.
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10'
 
-    alt-q = ['workspace 11-q', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-w = ['workspace 12-w', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-e = ['workspace 13-e', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-r = ['workspace 14-r', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-t = ['workspace 15-t', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-y = ['workspace 16-y', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-u = ['workspace 17-u', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-i = ['workspace 18-i', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-o = ['workspace 19-o', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-p = ['workspace 20-p', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-q = 'workspace 11-q'
+    alt-w = 'workspace 12-w'
+    alt-e = 'workspace 13-e'
+    alt-r = 'workspace 14-r'
+    alt-t = 'workspace 15-t'
+    alt-y = 'workspace 16-y'
+    alt-u = 'workspace 17-u'
+    alt-i = 'workspace 18-i'
+    alt-o = 'workspace 19-o'
+    alt-p = 'workspace 20-p'
 
-    alt-a = ['workspace 21-a', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-s = ['workspace 22-s', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-d = ['workspace 23-d', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-f = ['workspace 24-f', 'move-mouse window-force-center || move-mouse monitor-force-center']
-    alt-g = ['workspace 25-g', 'move-mouse window-force-center || move-mouse monitor-force-center']
+    alt-a = 'workspace 21-a'
+    alt-s = 'workspace 22-s'
+    alt-d = 'workspace 23-d'
+    alt-f = 'workspace 24-f'
+    alt-g = 'workspace 25-g'
 
     alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1', 'move-mouse window-force-center']
     alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2', 'move-mouse window-force-center']
