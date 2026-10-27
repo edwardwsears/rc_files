@@ -132,6 +132,7 @@ gaps.outer.right = 5
     # Temporarily maximize the focused window without changing the tiling tree.
     alt-m = 'fullscreen'
     # Bring the pointer to the focused window, or monitor if the workspace is empty.
+    alt-z = 'move-mouse window-force-center || move-mouse monitor-force-center'
     alt-shift-m = 'move-mouse window-force-center || move-mouse monitor-force-center'
     alt-esc = 'exec-and-forget /Users/esears/.config/hyprspace/exit-all-fullscreen.sh'
 
