@@ -4,7 +4,7 @@
 config-version = 2
 
 after-startup-command = [
-    'exec-and-forget borders active_color=0xffff9500 inactive_color=0x00000000 width=5.0',
+    'exec-and-forget borders active_color=0xffffea00 inactive_color=0x00000000 width=8.0',
     'exec-and-forget /opt/homebrew/bin/sketchybar --reload',
 ]
 
@@ -39,12 +39,13 @@ on-mode-changed = []
 focus-follows-mouse.enabled = false
 key-mapping.preset = 'qwerty'
 
-gaps.inner.horizontal = 0
-gaps.inner.vertical = 0
-gaps.outer.left = 5
-gaps.outer.bottom = 37
-gaps.outer.top = 5
-gaps.outer.right = 5
+# Match screen-edge and inter-window spacing; reserve 32pt for the bottom bar.
+gaps.inner.horizontal = 8
+gaps.inner.vertical = 8
+gaps.outer.left = 8
+gaps.outer.bottom = 40
+gaps.outer.top = 8
+gaps.outer.right = 8
 
 # Workspace ownership follows keyboard rows regardless of display arrangement.
 # Missing secondary or third displays fall back to the macOS main display.
