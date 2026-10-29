@@ -80,7 +80,6 @@ gaps.outer.right = 8
 
 [mode.main.binding]
     cmd-h = []
-    cmd-alt-h = []
     cmd-m = []
 
     # Reuse the current workspace switcher with the Hyprspace CLI.
@@ -130,6 +129,11 @@ gaps.outer.right = 8
 
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
+    # Resize width and height independently with Command + Option + H/J/K/L.
+    cmd-alt-h = 'resize width -50'
+    cmd-alt-j = 'resize height -50'
+    cmd-alt-k = 'resize height +50'
+    cmd-alt-l = 'resize width +50'
     # Temporarily maximize the focused window without changing the tiling tree.
     alt-m = 'fullscreen'
     # Bring the pointer to the focused window, or monitor if the workspace is empty.
